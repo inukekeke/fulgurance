@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FULGURANCE | Guide des Éclairs</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* DESIGN SYSTEM */
+        :root {
+            --bg-color: #FDFBF7;
+            --card-bg: #FFFFFF;
+            --text-main: #2C2C2C;
+            --text-light: #666666;
+            --accent-choco: #4A3B32;
+            --border-color: #EAEAEA;
+            
+            /* Grading Colors */
+            --grade-gold: #D4AF37;
+            --grade-silver: #C0C0C0;
+            --grade-bronze: #CD7F32;
+            --grade-black: #1a1a1a; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 4rem 1rem 3rem;
+            background: linear-gradient(to bottom, #fff 0%, var(--bg-color) 100%);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--accent-choco);
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* FILTRE ET TRI */
+        .controls-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+        }
+        
+        .controls-container label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-right: 10px;
+        }
+        
+        .controls-container select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+
+        /* GRID LAYOUT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* CARD DESIGN */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        /* IMAGE ÉCLAIR */
+        .card-image-container {
+            height: 200px;
+            overflow: hidden;
+            background-color: var(--accent-choco);
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card-image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* TCG SLAB HEADER */
+        .slab-header {
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #ddd;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-family: 'Chivo Mono', monospace; 
+            position: absolute; /* Place au-dessus de l'image */
+            top: 0;
+            right: 0;
+            border-top-right-radius: 12px;
+            border-bottom-left-radius: 12px;
+            z-index: 10;
+        }
+
+        /* The Main Grade Box */
+        .slab-grade-box {
+            background: var(--accent-choco);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        /* BLACK LABEL STYLE */
+        .black-label {
+            background-color: var(--grade-black) !important;
+            color: var(--grade-gold) !important;
+            border: 1px solid var(--grade-gold);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.4); /* Gold Glow */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Shimmer effect for Black Labels */
+        .black-label::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                rgba(255,255,255,0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .place-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--accent-choco);
+            margin: 0 0 0.2rem 0;
+        }
+
+        .place-address {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--text-light);
+            align-self: flex-start;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+        }
+        .place-address:hover { color: var(--accent-choco); border-bottom-color: var(--accent-choco); }
+
+        /* --- SUB-GRADES GRID --- */
+        .sub-grades-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 1.5rem;
+            background: #FAFAFA;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .sub-grade {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6px 2px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .sg-label {
+            font-family: 'Chivo Mono', monospace;
+            font-size: 0.65rem;
+            color: #999;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+        }
+
+        .sg-value {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        /* Black Label overrides for sub-grades */
+        .sub-grade.black-label {
+             background-color: var(--grade-black);
+             border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+        .sub-grade.black-label .sg-label { color: #aaa; }
+        .sub-grade.black-label .sg-value { color: var(--grade-gold); }
+
+        /* REVIEW SECTION */
+        .review-section { 
+            border-top: 1px solid #f0f0f0;
+            padding-top: 1rem;
+        }
+
+        /* DESCRIPTION DÉROULANTE */
+        .review-text-container {
+            max-height: 50px; /* Hauteur visible par défaut (environ 2-3 lignes) */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.5s ease-in-out;
+            margin-bottom: 10px;
+        }
+
+        .review-text-container.expanded {
+            max-height: 500px; /* Grande hauteur pour afficher tout le texte */
+        }
+
+        .read-more-button {
+            background: none;
+            border: none;
+            color: var(--accent-choco);
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: block;
+            text-align: left;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin: 0;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        .legend {
+            text-align: center;
+            font-family: 'Chivo Mono', monospace;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .container { grid-template-columns: 1fr; }
+            .controls-container { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>FULGURANCE</h1>
+        <p class="subtitle">Guide des Éclairs de Bretagne, par Edgar</p>
+        <div class="legend">
+            S: Saveurs &nbsp;|&nbsp; T: Texture &nbsp;|&nbsp; A: Aspect &nbsp;|&nbsp; R: Rapport
+        </div>
+    </header>
+
+    <div class="controls-container">
+        <label for="sort-method">Trier par :</label>
+        <select id="sort-method" onchange="renderPatisseries(database)">
+            <option value="recent">Récemment ajouté (Défaut)</option>
+            <option value="highest">Meilleure Note (Décroissant)</option>
+            <option value="lowest">Moins Bonne Note (Croissant)</option>
+        </select>
+    </div>
+
+    <main class="container" id="app">
+    
+    </main>
+
+    <footer>
+        <p>Graded by EG • Hosted on GitHub</p>
+    </footer>
+
+    <script>
+        
+        // Helper function to safely parse score for calculation
+        function getNumericScore(score) {
+            if (typeof score === 'string') {
+                if (score.endsWith('*')) {
+                    return 5;
+                }
+                return parseFloat(score);
+            }
+            return score; 
+        }
+
+        // --- 1. BASE DE DONNÉES (AJOUT DU CHAMP imageURL) ---
+        const initialDatabase = [
+            {
+                name: "Maison Bouvier",
+                address: "3 Rue Toullier, 35000 Rennes",
+                imageURL: "./img/bouvier.jpg",
+                scores: { s: "4.5", t: "5*", a: "4.5", r: "4.5" }, 
+                review: "Une prouesse technique au niveau de la texture : glaçage impeccable, crème onctueuse aux notes croustillantes, qui mérite une note exceptionnelle. Malgré un glaçage réussi, la saveur de la crème pâtissière manque de puissance. L'imposante présentation est séduisante, même si l'absence de motif signature coûte cher. 3.90€ est tout à fait acceptable."
+            },
+            {
+                name: "Maison Lorand",
+                address: "16 Rue Vasselot, 35000 Rennes",
+                imageURL: "./img/lorand.jpg", 
+                scores: { s: "3", t: "2", a: "3.5*", r: "3" }, 
+                review: "Visuellement agréable, cet éclair offre une saveur honnête, sans surprise. Cependant, la Texture est en deçà des attentes, avec une crème liquide et une pâte à choux qui manque de fraîcheur. À 3.80€, le tarif nous semble élevé pour la qualité proposée."
+            },
+            {
+                name: "Antoine Le Nôtre",
+                address: "4 Rue Bario, 22400 Lamballe-Armor",
+                imageURL: "./img/lenotre.jpg",
+                scores: { s: "4", t: "4.5", a: "5*", r: "3.5" },
+                review: "Une œuvre d'art, d'une personnalité marquante et d'une conception globale remarquable. Si la texture est irréprochable, l'équilibre est malheureusement légèrement brisé par une crème trop abondante et discrète en goût. (prix a reverifier)"
+            },
+            {
+                name: "Thierry bouvier",
+                address: "21 Rue de la Motte Picquet, 35000 Rennes",
+                imageURL: "./img/thierry bouvier.jpg",
+                scores: { s: "3.5", t: "3.5", a: "4", r: "4" },
+                review: "Un modèle de sobriété. L'Esthétique est travaillée et le rendu mat est irréprochable, malgré une trop grande simplicité du design. La Saveur du chocolat est trop peu affirmée, et la crème, hélas trop liquide, ne tient pas en bouche. Un prix juste à 3.50€ pour cette exécution honnête."
+            },
+            {
+                name: "Yvan Chevalier",
+                address: "9 Rue de Nemours, 35000 Rennes",
+                imageURL: "./img/chevalier.jpg",
+                scores: { s: "5", t: "4.5", a: "5", r: "5*" },
+                review: "Un plaisir pour les yeux à la saveur exquise. La crème pâtissière est exécutée avec une précision rare. Malgré une texture proche de la perfection, un très léger excès de crème empêche d'atteindre l'idéal. Ce petit chef-d'œuvre est un véritable cadeau à 3.70€."
+            },
+            {
+                name: "Laurent Le Daniel",
+                address: "19 Rue Jules Simon, 35000 Rennes",
+                imageURL: "./img/ledaniel.jpg",
+                scores: { s: "5", t: "4.5", a: "5*", r: "3.5" },
+                review: "Une conception d'exception dont l'esthétique marque l'esprit. L'expérience gustative est irréprochable ; l'arôme est d'une pureté rare. L'équilibre entre les éléments est presque parfait, seule une petite dose de crème en trop alourdit légèrement l'ensemble. 4.50€ est jugé bien trop onéreux cependant."
+            },
+            {
+                name: "Le fournil des Halles",
+                address: "24 Rue de Nemours, 35000 Rennes",
+                imageURL: "./img/halles.jpg",
+                scores: { s: "4.5", t: "5*", a: "3.5", r: "5" },
+                review: "Une virtuosité technique qui mérite une note exceptionelle : l'onctuosité et le craquant sont parfaitement maîtrisés. Le palais est séduit par la qualité des ingrédients, bien que l'arôme soit légèrement trop sucré. Visuellement, l'éclair est simple, soigné, mais manque peut-être de caractère. Le rapport est imbattable à 3.00€."
+            }
+        ].map((item, index) => ({ ...item, insertionOrder: index })); // Ajout d'un index d'insertion
+
+        // Copie de la base de données initiale pour les opérations de tri
+        let database = [...initialDatabase];
+
+
+        // --- 2. FONCTION POUR TRIER LA BASE DE DONNÉES ---
+        function sortDatabase(data, sortMethod) {
+            // Cloner pour ne pas modifier l'original
+            let sortedData = [...data];
+
+            switch (sortMethod) {
+                case 'highest':
+                    // Tri par note moyenne décroissante
+                    sortedData.sort((a, b) => {
+                        const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
+                        const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
+                        return avgB - avgA; // Décroissant
+                    });
+                    break;
+                case 'lowest':
+                    // Tri par note moyenne croissante
+                    sortedData.sort((a, b) => {
+                        const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
+                        const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
+                        return avgA - avgB; // Croissant
+                    });
+                    break;
+                case 'recent':
+                default:
+                    // Tri par ordre d'insertion (du plus récent au plus ancien, en inversant l'ordre initial)
+                    sortedData.sort((a, b) => b.insertionOrder - a.insertionOrder);
+                    break;
+            }
+            return sortedData;
+        }
+
+        // --- 3. FONCTION DE RENDU PRINCIPALE ---
+        const app = document.getElementById('app');
+
+        function renderPatisseries(data) {
+            const sortMethod = document.getElementById('sort-method').value;
+            const sortedData = sortDatabase(data, sortMethod);
+            app.innerHTML = ''; // Nettoyer la liste avant de la remplir
+
+            sortedData.forEach((item) => {
+                // 1. Calculate Average
+                const total = getNumericScore(item.scores.s) + getNumericScore(item.scores.t) + getNumericScore(item.scores.a) + getNumericScore(item.scores.r);
+                const average = (total / 4).toFixed(1); 
+
+                // 2. Map Link
+                const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+
+                // 3. MAIN GRADE COLOR LOGIC
+                const allExceptional = (
+                    item.scores.s === "5*" &&
+                    item.scores.t === "5*" &&
+                    item.scores.a === "5*" &&
+                    item.scores.r === "5*"
+                );
+
+                let gradeClass = "";
+                let gradeColor = "#4A3B32";
+
+                if (allExceptional) {
+                    gradeClass = "black-label";
+                } else if (average >= 4.5) {
+                    gradeColor = "#D4AF37"; // Gold
+                } else if (average >= 4.0) {
+                    gradeColor = "#C0C0C0"; // Silver
+                } else {
+                    gradeColor = "#CD7F32"; // Bronze
+                }
+
+                // 4. SUB-GRADE BUILDER (S, T, A, R)
+                const renderKeys = [
+                    { dataKey: 's', label: 'S' },
+                    { dataKey: 't', label: 'T' },
+                    { dataKey: 'a', label: 'A' },
+                    { dataKey: 'r', label: 'R' }
+                ];
+
+                let subGradesHTML = '<div class="sub-grades-container">';
+                
+                renderKeys.forEach(k => {
+                    const val = item.scores[k.dataKey];
+                    const isExceptional = (val === "5*");
+                    const boxClass = isExceptional ? 'sub-grade black-label' : 'sub-grade';
+                    const displayVal = isExceptional ? '5★' : val;
+
+                    subGradesHTML += `
+                        <div class="${boxClass}">
+                            <span class="sg-label">${k.label}</span>
+                            <span class="sg-value">${displayVal}</span>
+                        </div>
+                    `;
+                });
+                subGradesHTML += '</div>';
+
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                card.innerHTML = `
+                    <div class="slab-header">
+                        <div class="slab-grade-box ${gradeClass}" style="background:${gradeColor}">
+                            ${average}
+                        </div>
+                    </div>
+
+                    <div class="card-image-container">
+                        <img src="${item.imageURL || 'https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE'}" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE+Image+introuvable';" 
+                             alt="Éclair de la pâtisserie ${item.name}">
+                    </div>
+                    
+                    <div class="card-body">
+                        <h2 class="place-name">${item.name}</h2>
+                        <a href="${mapsLink}" target="_blank" class="place-address">📍 ${item.address}</a>
+
+                        ${subGradesHTML}
+
+                        <div class="review-section">
+                            <div class="review-text-container" id="review-${item.name.replace(/\s/g, '-')}-${item.address.substring(0, 5)}">
+                                <p class="review-text">"${item.review}"</p>
+                            </div>
+                            <button class="read-more-button" data-target="review-${item.name.replace(/\s/g, '-')}-${item.address.substring(0, 5)}" onclick="toggleReview(this)">Lire la suite...</button>
+                        </div>
+                    </div>
+                `;
+                app.appendChild(card);
+            });
+        }
+        
+        // --- 4. FONCTION POUR DÉROULER LA DESCRIPTION ---
+        function toggleReview(button) {
+            const targetId = button.getAttribute('data-target');
+            const container = document.getElementById(targetId);
+
+            if (container.classList.contains('expanded')) {
+                container.classList.remove('expanded');
+                button.textContent = 'Lire la suite...';
+            } else {
+                container.classList.add('expanded');
+                button.textContent = 'Réduire';
+            }
+        }
+
+        // Lance le rendu au chargement initial (tri par Récemment ajouté)
+        window.onload = function() {
+            renderPatisseries(database);
+        }
+    </script>
+</body>
+</html>
