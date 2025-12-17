@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FULGURANCE | Guide des Éclairs</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
 
     <style>
         /* DESIGN SYSTEM */
@@ -18,15 +21,17 @@
             --text-light: #666666;
             --accent-choco: #4A3B32;
             --border-color: #EAEAEA;
-            
+
             /* Grading Colors */
             --grade-gold: #D4AF37;
             --grade-silver: #C0C0C0;
             --grade-bronze: #CD7F32;
-            --grade-black: #1a1a1a; 
+            --grade-black: #1a1a1a;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             background-color: var(--bg-color);
@@ -42,7 +47,7 @@
             text-align: center;
             padding: 4rem 1rem 3rem;
             background: linear-gradient(to bottom, #fff 0%, var(--bg-color) 100%);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         h1 {
@@ -60,7 +65,7 @@
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         /* FILTRE ET TRI */
         .controls-container {
             max-width: 1200px;
@@ -70,13 +75,13 @@
             border-bottom: 1px solid #eee;
             margin-bottom: 2rem;
         }
-        
+
         .controls-container label {
             font-size: 0.9rem;
             color: var(--text-light);
             margin-right: 10px;
         }
-        
+
         .controls-container select {
             padding: 8px 12px;
             border-radius: 6px;
@@ -101,7 +106,7 @@
             background: var(--card-bg);
             border-radius: 12px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -111,7 +116,7 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
         /* IMAGE ÉCLAIR */
@@ -140,8 +145,9 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            font-family: 'Chivo Mono', monospace; 
-            position: absolute; /* Place au-dessus de l'image */
+            font-family: 'Chivo Mono', monospace;
+            position: absolute;
+            /* Place au-dessus de l'image */
             top: 0;
             right: 0;
             border-top-right-radius: 12px;
@@ -166,11 +172,12 @@
             background-color: var(--grade-black) !important;
             color: var(--grade-gold) !important;
             border: 1px solid var(--grade-gold);
-            box-shadow: 0 0 5px rgba(212, 175, 55, 0.4); /* Gold Glow */
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
+            /* Gold Glow */
             position: relative;
             overflow: hidden;
         }
-        
+
         /* Shimmer effect for Black Labels */
         .black-label::after {
             content: "";
@@ -179,19 +186,22 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                to right, 
-                rgba(255,255,255,0) 0%, 
-                rgba(255,255,255,0.3) 50%, 
-                rgba(255,255,255,0) 100%
-            );
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
             transform: rotate(30deg);
             animation: shimmer 3s infinite;
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%) rotate(30deg); }
-            100% { transform: translateX(100%) rotate(30deg); }
+            0% {
+                transform: translateX(-100%) rotate(30deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(30deg);
+            }
         }
 
         .card-body {
@@ -217,7 +227,11 @@
             margin-bottom: 1.5rem;
             transition: color 0.2s;
         }
-        .place-address:hover { color: var(--accent-choco); border-bottom-color: var(--accent-choco); }
+
+        .place-address:hover {
+            color: var(--accent-choco);
+            border-bottom-color: var(--accent-choco);
+        }
 
         /* --- SUB-GRADES GRID --- */
         .sub-grades-container {
@@ -258,29 +272,45 @@
 
         /* Black Label overrides for sub-grades */
         .sub-grade.black-label {
-             background-color: var(--grade-black);
-             border: 1px solid rgba(212, 175, 55, 0.4);
+            background-color: var(--grade-black);
+            border: 1px solid rgba(212, 175, 55, 0.4);
         }
-        .sub-grade.black-label .sg-label { color: #aaa; }
-        .sub-grade.black-label .sg-value { color: var(--grade-gold); }
+
+        .sub-grade.black-label .sg-label {
+            color: #aaa;
+        }
+
+        .sub-grade.black-label .sg-value {
+            color: var(--grade-gold);
+        }
 
         /* REVIEW SECTION */
-        .review-section { 
+        .review-section {
             border-top: 1px solid #f0f0f0;
             padding-top: 1rem;
         }
 
         /* DESCRIPTION DÉROULANTE */
         .review-text-container {
-            max-height: 50px; /* Hauteur visible par défaut (environ 2-3 lignes) */
+            max-height: 50px;
             overflow: hidden;
             position: relative;
-            transition: max-height 0.5s ease-in-out;
-            margin-bottom: 10px;
+            transition: max-height 0.4s ease;
         }
 
         .review-text-container.expanded {
-            max-height: 500px; /* Grande hauteur pour afficher tout le texte */
+            max-height: 500px;
+        }
+
+        .review-text-container:not(.expanded)::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
         }
 
         .read-more-button {
@@ -310,7 +340,7 @@
             font-size: 0.9rem;
             margin-top: 2rem;
         }
-        
+
         .legend {
             text-align: center;
             font-family: 'Chivo Mono', monospace;
@@ -320,12 +350,21 @@
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            .container { grid-template-columns: 1fr; }
-            .controls-container { text-align: center; }
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .controls-container {
+                text-align: center;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -346,7 +385,7 @@
     </div>
 
     <main class="container" id="app">
-    
+
     </main>
 
     <footer>
@@ -354,7 +393,7 @@
     </footer>
 
     <script>
-        
+
         // Helper function to safely parse score for calculation
         function getNumericScore(score) {
             if (typeof score === 'string') {
@@ -363,7 +402,7 @@
                 }
                 return parseFloat(score);
             }
-            return score; 
+            return score;
         }
 
         // --- 1. BASE DE DONNÉES (AJOUT DU CHAMP imageURL) ---
@@ -372,14 +411,14 @@
                 name: "Maison Bouvier",
                 address: "3 Rue Toullier, 35000 Rennes",
                 imageURL: "./img/bouvier.jpg",
-                scores: { s: "4.5", t: "5*", a: "4.5", r: "4.5" }, 
+                scores: { s: "4.5", t: "5*", a: "4.5", r: "4.5" },
                 review: "Une prouesse technique au niveau de la texture : glaçage impeccable, crème onctueuse aux notes croustillantes, qui mérite une note exceptionnelle. Malgré un glaçage réussi, la saveur de la crème pâtissière manque de puissance. L'imposante présentation est séduisante, même si l'absence de motif signature coûte cher. 3.90€ est tout à fait acceptable."
             },
             {
                 name: "Maison Lorand",
                 address: "16 Rue Vasselot, 35000 Rennes",
-                imageURL: "./img/lorand.jpg", 
-                scores: { s: "3", t: "2", a: "3.5*", r: "3" }, 
+                imageURL: "./img/lorand.jpg",
+                scores: { s: "3", t: "2", a: "3.5*", r: "3" },
                 review: "Visuellement agréable, cet éclair offre une saveur honnête, sans surprise. Cependant, la Texture est en deçà des attentes, avec une crème liquide et une pâte à choux qui manque de fraîcheur. À 3.80€, le tarif nous semble élevé pour la qualité proposée."
             },
             {
@@ -465,7 +504,7 @@
             sortedData.forEach((item) => {
                 // 1. Calculate Average
                 const total = getNumericScore(item.scores.s) + getNumericScore(item.scores.t) + getNumericScore(item.scores.a) + getNumericScore(item.scores.r);
-                const average = (total / 4).toFixed(1); 
+                const average = (total / 4).toFixed(1);
 
                 // 2. Map Link
                 const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
@@ -500,7 +539,7 @@
                 ];
 
                 let subGradesHTML = '<div class="sub-grades-container">';
-                
+
                 renderKeys.forEach(k => {
                     const val = item.scores[k.dataKey];
                     const isExceptional = (val === "5*");
@@ -516,10 +555,10 @@
                 });
                 subGradesHTML += '</div>';
 
-                
+
                 const card = document.createElement('div');
                 card.className = 'card';
-                
+
                 card.innerHTML = `
                     <div class="slab-header">
                         <div class="slab-grade-box ${gradeClass}" style="background:${gradeColor}">
@@ -550,7 +589,7 @@
                 app.appendChild(card);
             });
         }
-        
+
         // --- 4. FONCTION POUR DÉROULER LA DESCRIPTION ---
         function toggleReview(button) {
             const targetId = button.getAttribute('data-target');
@@ -566,9 +605,10 @@
         }
 
         // Lance le rendu au chargement initial (tri par Récemment ajouté)
-        window.onload = function() {
+        window.onload = function () {
             renderPatisseries(database);
         }
     </script>
 </body>
+
 </html>
