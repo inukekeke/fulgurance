@@ -394,7 +394,6 @@
 
     <script>
 
-        // Helper function to safely parse score for calculation
         function getNumericScore(score) {
             if (typeof score === 'string') {
                 if (score.endsWith('*')) {
@@ -405,7 +404,7 @@
             return score;
         }
 
-        // --- 1. BASE DE DONNÉES (AJOUT DU CHAMP imageURL) ---
+        // --- BASE DE DONNÉES ---
         const initialDatabase = [
             {
                 name: "Maison Bouvier",
@@ -476,6 +475,13 @@
                 imageURL: "./img/feuillette.jpg",
                 scores: { s: "3.5", t: "3.5", a: "4.5", r: "4" },
                 review: "Une pièce magnifique, originale et élégante, malheureusement freinée par un chou peu tendre et une intensité faible. Les billes croquantes en surface viennent redonner du souffle à l'ensemble. À 3,30€, le tarif demeure juste pour un travail visuel aussi abouti."
+            },
+            {
+                name: "Boulangerie Amande",
+                address: "1 Place Via Silva, 35510 Cesson-Sévigné",
+                imageURL: "./img/amande.jpg",
+                scores: { s: "4.5", t: "4.5", a: "4.5", r: "4.5" },
+                review: "Un goût de chocolat très prononcé, relevé par une touche subtile mais juste de fleur d'oranger. La pâte à chou a du caractère, le glaçage est intense et la crème est dosée avec finesse. La pièce a une vraie personnalité grâce aux copeaux de chocolat râpés. À 3,50 €, le rapport qualité-prix est excellent pour un produit de cette lignée."
             }
         ].map((item, index) => ({ ...item, insertionOrder: index })); // Ajout d'un index d'insertion
 
