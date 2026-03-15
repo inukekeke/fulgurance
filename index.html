@@ -414,6 +414,113 @@
                 text-align: center;
             }
         }
+
+        /* SECTION À PROPOS (Bas de page) */
+        .about-section {
+            max-width: 800px;
+            margin: 4rem auto 2rem;
+            padding: 0 20px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        /* ACCORDÉON MÉTHODOLOGIE */
+        .methodology-accordion {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .methodology-accordion summary {
+            padding: 15px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            background: var(--sub-grades-bg);
+            list-style: none;
+            /* Enlève la petite flèche moche sur certains navigateurs */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Ajoute une petite icône + qui tourne */
+        .methodology-accordion summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-choco);
+            transition: transform 0.3s;
+        }
+
+        .methodology-accordion[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .accordion-content ul {
+            padding-left: 20px;
+        }
+
+        .accordion-content li {
+            margin-bottom: 8px;
+        }
+
+        /* BOÎTE DE TRANSPARENCE */
+        .disclaimer-box {
+            background-color: transparent;
+            border-left: 4px solid var(--accent-choco);
+            padding: 10px 20px;
+            margin-bottom: 2rem;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .disclaimer-box p {
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+
+        /* BOÎTE DE SUGGESTION */
+        .suggest-box {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .suggest-box a {
+            color: var(--accent-choco);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-choco);
+            transition: opacity 0.2s;
+        }
+
+        .suggest-box a:hover {
+            opacity: 0.7;
+        }
+
+        /* ANIMATION DOUCE POUR L'ACCORDÉON */
+        .methodology-accordion[open] .accordion-content {
+            animation: slideDownFade 0.35s ease-out forwards;
+            transform-origin: top;
+        }
+
+        @keyframes slideDownFade {
+            0% {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -423,7 +530,7 @@
         <h1>FULGURANCE</h1>
         <p class="subtitle">Guide des Éclairs de Bretagne, par Edgar</p>
         <div class="legend">
-            S: Saveurs &nbsp;|&nbsp; T: Texture &nbsp;|&nbsp; A: Aspect &nbsp;|&nbsp; R: Rapport
+            S: Saveur &nbsp;|&nbsp; T: Texture &nbsp;|&nbsp; A: Aspect &nbsp;|&nbsp; R: Rapport
         </div>
     </header>
 
@@ -443,6 +550,47 @@
     <main class="container" id="app">
 
     </main>
+
+    <section class="about-section">
+        <details class="methodology-accordion">
+            <summary>Comprendre la notation (Critères S.T.A.R)</summary>
+            <div class="accordion-content">
+                <p>Chaque éclair est évalué rigoureusement selon quatre axes :</p>
+                <ul>
+                    <li><strong>S pour Saveur :</strong> Intensité et pureté du cacao, équilibre du sucre, bref, le goût
+                        pur et simple qui donne envie de prendre une deuxième bouchée.
+                    </li>
+                    <li><strong>T pour Texture :</strong> Fraîcheur et moelleux de la pâte à choux, onctuosité de
+                        l'appareil, craquant du glaçage. C'est en somme ce qui différencie une soupe de légumes à
+                        croquer dans une courge.
+                    </li>
+                    <li><strong>A pour Aspect :</strong> Style, couleur, personnalité, précision des finitions, c'est la
+                        première qualité à laquelle on fait face, et souvent ce qui pousse à tester, goûter, pour
+                        ultimement noter.
+                    </li>
+                    <li><strong>R pour Rapport :</strong> L'équilibre entre les trois premiers axes, l'expérience de la
+                        dégustation, et le prix finalement payé.
+                    </li>
+                </ul>
+                <p><em>La notation "5★" est réservée au domaine de l'exceptionnel. Obtenir "5★" à au moins 3 critères
+                        sur 4 vaut à l'éclair un "Black Label", une distinction rarissime récompensant une maîtrise
+                        exemplaire.</em></p>
+            </div>
+        </details>
+
+        <div class="disclaimer-box">
+            <strong>Note de transparence :</strong>
+            <p>Fulgurance est un projet 100% indépendant et autofinancé, né d'une passion pour la pâtisserie. Les
+                dégustations s'étalant sur plusieurs mois (voire années), il est naturel que certains tarifs, visuels ou
+                recettes aient pu évoluer chez les artisans depuis ma visite. Merci donc de bien vouloir pardonner les
+                éventuels décalages :).</p>
+        </div>
+
+        <div class="suggest-box">
+            <p>Une pépite à me recommander en Bretagne ? <a href="mailto:ton.email@exemple.com">Suggérer une
+                    pâtisserie</a>.</p>
+        </div>
+    </section>
 
     <footer>
         <p>Graded by EG • Hosted on GitHub</p>
@@ -593,17 +741,16 @@
                 const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
 
                 // 3. MAIN GRADE COLOR LOGIC
-                const allExceptional = (
-                    item.scores.s === "5*" &&
-                    item.scores.t === "5*" &&
-                    item.scores.a === "5*" &&
-                    item.scores.r === "5*"
-                );
+                // On compte combien de critères ont "5*"
+                const exceptionalCount = [item.scores.s, item.scores.t, item.scores.a, item.scores.r].filter(score => score === "5*").length;
+                
+                // Le Black Label est accordé si on a au moins 3 critères à 5*
+                const isBlackLabel = exceptionalCount >= 3;
 
                 let gradeClass = "";
                 let gradeColor = "#4A3B32";
 
-                if (allExceptional) {
+                if (isBlackLabel) {
                     gradeClass = "black-label";
                 } else if (average >= 4.5) {
                     gradeColor = "#D4AF37"; // Gold
