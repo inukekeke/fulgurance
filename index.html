@@ -8,7 +8,6 @@
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.95em%22 x=%22.1em%22 font-family=%22Playfair Display, serif%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%23D4AF37%22>F</text></svg>">
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,7 +15,7 @@
         rel="stylesheet">
 
     <style>
-        /* DESIGN SYSTEM */
+        /* DESIGN SYSTEM - THEME CLAIR (DEFAUT) */
         :root {
             --bg-color: #FDFBF7;
             --card-bg: #FFFFFF;
@@ -28,29 +27,26 @@
             --grade-silver: #C0C0C0;
             --grade-bronze: #CD7F32;
             --grade-black: #1a1a1a;
-
-            /* Nouvelles variables pour corriger tes bugs */
+            
             --header-gradient-start: #ffffff;
             --sub-grades-bg: #FAFAFA;
             --fade-gradient: linear-gradient(transparent, #FFFFFF);
         }
 
+        /* DESIGN SYSTEM - THEME SOMBRE */
         body.dark-mode {
             --bg-color: #121212;
             --card-bg: #1E1E1E;
             --text-main: #E0E0E0;
             --text-light: #A0A0A0;
-            --accent-choco: #D4AF37;
-            /* FULGURANCE devient doré */
+            --accent-choco: #D4AF37; 
             --border-color: #333333;
-
-            /* Les couleurs adaptées au mode sombre */
             --header-gradient-start: #1E1E1E;
             --sub-grades-bg: #2A2A2A;
             --fade-gradient: linear-gradient(transparent, #1E1E1E);
         }
 
-        /* Mise en page du header de contrôle */
+        /* CONTROLS HEADER */
         .controls-container {
             max-width: 1200px;
             margin: 0 auto 2rem auto;
@@ -69,7 +65,7 @@
             opacity: 0.6;
         }
 
-        /* On utilise la variable pour le fondu dans ton .review-text-container::after */
+        /* FADE EFFECT - REVIEW TEXT */
         .review-text-container::after {
             content: "";
             position: absolute;
@@ -77,8 +73,7 @@
             left: 0;
             width: 100%;
             height: 40px;
-            background: var(--gradient-fade);
-            /* Utilise la variable ici */
+            background: var(--fade-gradient);
             transition: opacity 0.3s;
         }
 
@@ -95,13 +90,12 @@
             line-height: 1.6;
         }
 
-        /* HEADER */
+        /* HEADER SECTION */
         header {
             text-align: center;
             padding: 4rem 1rem 3rem;
             background: linear-gradient(to bottom, var(--header-gradient-start) 0%, var(--bg-color) 100%);
             border-bottom: 1px solid var(--border-color);
-            /* J'utilise la variable border aussi */
         }
 
         h1 {
@@ -120,7 +114,7 @@
             margin: 0 auto;
         }
 
-        /* FILTRE ET TRI */
+        /* FILTERS & SORTING */
         .controls-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -145,7 +139,7 @@
         }
 
 
-        /* GRID LAYOUT */
+        /* MAIN GRID LAYOUT */
         .container {
             max-width: 1200px;
             margin: 0 auto 3rem;
@@ -155,7 +149,7 @@
             gap: 2.5rem;
         }
 
-        /* CARD DESIGN */
+        /* PATISSERIE CARD DESIGN */
         .card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -173,12 +167,10 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
-        /* Conteneur et image de l'éclair */
+        /* CARD IMAGE CONTAINER */
         .card-image-container {
             aspect-ratio: 3 / 2;
-            /* Ratio photo classique : la hauteur s'adapte à la largeur ! */
             height: auto;
-            /* On enlève la hauteur fixe */
             overflow: hidden;
             background-color: var(--accent-choco);
         }
@@ -194,7 +186,7 @@
             transform: scale(1.05);
         }
 
-        /* TCG SLAB HEADER */
+        /* TCG SLAB HEADER (GRADE CONTAINER) */
         .slab-header {
             background-color: var(--sub-grades-bg);
             border-bottom: 2px solid var(--border-color);
@@ -213,7 +205,6 @@
             z-index: 10;
         }
 
-        /* The Main Grade Box */
         .slab-grade-box {
             background: var(--accent-choco);
             color: #fff;
@@ -225,18 +216,16 @@
             text-align: center;
         }
 
-        /* BLACK LABEL STYLE */
+        /* BLACK LABEL STYLING */
         .black-label {
             background-color: var(--grade-black) !important;
             color: var(--grade-gold) !important;
             border: 1px solid var(--grade-gold);
             box-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
-            /* Gold Glow */
             position: relative;
             overflow: hidden;
         }
 
-        /* Shimmer effect for Black Labels */
         .black-label::after {
             content: "";
             position: absolute;
@@ -291,7 +280,7 @@
             border-bottom-color: var(--accent-choco);
         }
 
-        /* --- SUB-GRADES GRID --- */
+        /* SUB-GRADES GRID (S.T.A.R) */
         .sub-grades-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -328,7 +317,6 @@
             color: var(--text-main);
         }
 
-        /* Black Label overrides for sub-grades */
         .sub-grade.black-label {
             background-color: var(--grade-black);
             border: 1px solid rgba(212, 175, 55, 0.4);
@@ -342,13 +330,12 @@
             color: var(--grade-gold);
         }
 
-        /* REVIEW SECTION */
+        /* REVIEW COMPONENT */
         .review-section {
             border-top: 1px solid #f0f0f0;
             padding-top: 1rem;
         }
 
-        /* DESCRIPTION DÉROULANTE */
         .review-text-container {
             max-height: 50px;
             overflow: hidden;
@@ -421,7 +408,7 @@
             }
         }
 
-        /* SECTION À PROPOS (Bas de page) */
+        /* ABOUT SECTION */
         .about-section {
             max-width: 800px;
             margin: 4rem auto 2rem;
@@ -430,7 +417,7 @@
             font-size: 0.95rem;
         }
 
-        /* ACCORDÉON MÉTHODOLOGIE */
+        /* METHODOLOGY ACCORDION */
         .methodology-accordion {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -444,14 +431,13 @@
             font-weight: bold;
             cursor: pointer;
             background: var(--sub-grades-bg);
-            list-style: none;
-            /* Enlève la petite flèche moche sur certains navigateurs */
+            list-style: none; /* Hide default webkit arrow */
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        /* Ajoute une petite icône + qui tourne */
+        /* Custom Accordion Icon */
         .methodology-accordion summary::after {
             content: '+';
             font-size: 1.5rem;
@@ -476,7 +462,7 @@
             margin-bottom: 8px;
         }
 
-        /* BOÎTE DE TRANSPARENCE */
+        /* DISCLAIMER BOX */
         .disclaimer-box {
             background-color: transparent;
             border-left: 4px solid var(--accent-choco);
@@ -491,7 +477,7 @@
             font-size: 0.9rem;
         }
 
-        /* BOÎTE DE SUGGESTION */
+        /* SUGGESTION BOX */
         .suggest-box {
             text-align: center;
             padding-top: 2rem;
@@ -510,7 +496,7 @@
             opacity: 0.7;
         }
 
-        /* ANIMATION DOUCE POUR L'ACCORDÉON */
+        /* ACCORDION ANIMATION */
         .methodology-accordion[open] .accordion-content {
             animation: slideDownFade 0.35s ease-out forwards;
             transform-origin: top;
@@ -530,18 +516,18 @@
     </style>
 </head>
 
-<body>
+<body class="dark-mode">
 
     <header>
         <h1>FULGURANCE</h1>
         <p class="subtitle">Guide des Éclairs de Bretagne, par Edgar</p>
         <div class="legend">
-            S: Saveur &nbsp;|&nbsp; T: Texture &nbsp;|&nbsp; A: Aspect &nbsp;|&nbsp; R: Rapport
+            S: Saveur  |  T: Texture  |  A: Aspect  |  R: Rapport
         </div>
     </header>
 
     <div class="controls-container">
-        <div id="theme-toggle" onclick="toggleTheme()">MODE SOMBRE</div>
+        <div id="theme-toggle" onclick="toggleTheme()">MODE CLAIR</div>
 
         <div class="sort-container">
             <label for="sort-method">Trier par :</label>
@@ -554,7 +540,6 @@
     </div>
 
     <main class="container" id="app">
-
     </main>
 
     <section class="about-section">
@@ -603,7 +588,7 @@
     </footer>
 
     <script>
-
+        // Data format handler for string/number conversion
         function getNumericScore(score) {
             if (typeof score === 'string') {
                 if (score.endsWith('*')) {
@@ -614,7 +599,7 @@
             return score;
         }
 
-        // --- BASE DE DONNÉES ---
+        // --- DATABASE ---
         const initialDatabase = [
             {
                 name: "Maison Bouvier",
@@ -693,64 +678,57 @@
                 scores: { s: "4.5", t: "4.5", a: "4.5", r: "4.5" },
                 review: "Un goût de chocolat très prononcé, relevé par une touche subtile mais juste de fleur d'oranger. La pâte à chou a du caractère, le glaçage est intense et la crème est dosée avec finesse. La pièce a une vraie personnalité grâce aux copeaux de chocolat râpés. À 3,50 €, le rapport qualité-prix est excellent pour un produit de cette lignée."
             }
-        ].map((item, index) => ({ ...item, insertionOrder: index })); // Ajout d'un index d'insertion
+        ].map((item, index) => ({ ...item, insertionOrder: index })); 
 
-        // Copie de la base de données initiale pour les opérations de tri
         let database = [...initialDatabase];
 
-
-        // --- 2. FONCTION POUR TRIER LA BASE DE DONNÉES ---
+        // --- SORTING LOGIC ---
         function sortDatabase(data, sortMethod) {
-            // Cloner pour ne pas modifier l'original
             let sortedData = [...data];
 
             switch (sortMethod) {
                 case 'highest':
-                    // Tri par note moyenne décroissante
                     sortedData.sort((a, b) => {
                         const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
                         const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
-                        return avgB - avgA; // Décroissant
+                        return avgB - avgA;
                     });
                     break;
                 case 'lowest':
-                    // Tri par note moyenne croissante
                     sortedData.sort((a, b) => {
                         const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
                         const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
-                        return avgA - avgB; // Croissant
+                        return avgA - avgB;
                     });
                     break;
                 case 'recent':
                 default:
-                    // Tri par ordre d'insertion (du plus récent au plus ancien, en inversant l'ordre initial)
+                    // Default chronological order
                     sortedData.sort((a, b) => b.insertionOrder - a.insertionOrder);
                     break;
             }
             return sortedData;
         }
 
-        // --- 3. FONCTION DE RENDU PRINCIPALE ---
+        // --- MAIN RENDER FUNCTION ---
         const app = document.getElementById('app');
 
         function renderPatisseries(data) {
             const sortMethod = document.getElementById('sort-method').value;
             const sortedData = sortDatabase(data, sortMethod);
-            app.innerHTML = ''; // Nettoyer la liste avant de la remplir
+            
+            app.innerHTML = '';
 
             sortedData.forEach((item) => {
-                // 1. Calculate Average
+                // Calculate Average
                 const total = getNumericScore(item.scores.s) + getNumericScore(item.scores.t) + getNumericScore(item.scores.a) + getNumericScore(item.scores.r);
                 const average = (total / 4).toFixed(1);
 
-                // 2. Map Link
+                // Map Link Builder
                 const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
 
-                // 3. MAIN GRADE COLOR LOGIC
-                // On compte combien de critères ont "5*"
+                // EVALUATION LOGIC - BLACK LABEL ASSIGNMENT
                 const exceptionalCount = [item.scores.s, item.scores.t, item.scores.a, item.scores.r].filter(score => score === "5*").length;
-
-                // Le Black Label est accordé si on a au moins 3 critères à 5*
                 const isBlackLabel = exceptionalCount >= 3;
 
                 let gradeClass = "";
@@ -759,14 +737,14 @@
                 if (isBlackLabel) {
                     gradeClass = "black-label";
                 } else if (average >= 4.5) {
-                    gradeColor = "#D4AF37"; // Gold
+                    gradeColor = "#D4AF37"; // Gold Level
                 } else if (average >= 4.0) {
-                    gradeColor = "#C0C0C0"; // Silver
+                    gradeColor = "#C0C0C0"; // Silver Level
                 } else {
-                    gradeColor = "#CD7F32"; // Bronze
+                    gradeColor = "#CD7F32"; // Bronze Level
                 }
 
-                // 4. SUB-GRADE BUILDER (S, T, A, R)
+                // SUB-GRADE BUILDER (S.T.A.R.)
                 const renderKeys = [
                     { dataKey: 's', label: 'S' },
                     { dataKey: 't', label: 'T' },
@@ -791,7 +769,7 @@
                 });
                 subGradesHTML += '</div>';
 
-
+                // DOM Node Creation
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.id = item.name.toLowerCase().replace(/\s+/g, '-');
@@ -827,7 +805,7 @@
             });
         }
 
-        // --- 4. FONCTION POUR DÉROULER LA DESCRIPTION ---
+        // --- UI HANDLERS ---
         function toggleReview(button) {
             const targetId = button.getAttribute('data-target');
             const container = document.getElementById(targetId);
@@ -841,14 +819,29 @@
             }
         }
 
-        // Lance le rendu au chargement initial (tri par Récemment ajouté)
-        window.onload = function () {
-            renderPatisseries(database);
-        }
+        // --- THEME MANAGEMENT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('themePreference');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = "MODE SOMBRE";
+            } else {
+                document.body.classList.add('dark-mode');
+                themeToggleBtn.textContent = "MODE CLAIR";
+            }
+        });
 
         function toggleTheme() {
             const isDark = document.body.classList.toggle('dark-mode');
             document.getElementById('theme-toggle').textContent = isDark ? "MODE CLAIR" : "MODE SOMBRE";
+            localStorage.setItem('themePreference', isDark ? 'dark' : 'light');
+        }
+
+        // --- INITIALIZATION & URL ROUTING ---
+        window.onload = function () {
+            renderPatisseries(database);
         }
 
         window.addEventListener('load', () => {
@@ -858,30 +851,28 @@
             if (patisserieId) {
                 const targetCard = document.getElementById(patisserieId);
                 if (targetCard) {
-                    // 1. On cache toutes les autres cartes
+                    // Hide all irrelevant cards
                     document.querySelectorAll('.card').forEach(c => {
                         if (c !== targetCard) c.style.display = 'none';
                     });
 
-                    // 2. On cache UNIQUEMENT le menu de tri (on garde le header et le mode sombre)
+                    // Hide sorting menu
                     document.querySelector('.sort-container').style.display = 'none';
 
-                    // 3. On centre la carte
+                    // Center the targeted card
                     const appContainer = document.getElementById('app');
                     appContainer.style.display = 'flex';
                     appContainer.style.justifyContent = 'center';
-
-                    // On réduit un peu la marge en haut car l'en-tête prend déjà de la place
                     appContainer.style.marginTop = '2rem';
 
                     targetCard.style.maxWidth = '500px';
                     targetCard.style.width = '100%';
 
-                    // 4. On ouvre automatiquement la critique
+                    // Auto-expand review text
                     const btn = targetCard.querySelector('.read-more-button');
                     if (btn) toggleReview(btn);
 
-                    // 5. On ajoute le bouton retour
+                    // Inject "Go Back" functionality
                     const backBtn = document.createElement('button');
                     backBtn.innerHTML = "← Voir tout le guide";
                     backBtn.className = "read-more-button";
