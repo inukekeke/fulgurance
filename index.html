@@ -27,7 +27,7 @@
             --grade-silver: #C0C0C0;
             --grade-bronze: #CD7F32;
             --grade-black: #1a1a1a;
-            
+
             --header-gradient-start: #ffffff;
             --sub-grades-bg: #FAFAFA;
             --fade-gradient: linear-gradient(transparent, #FFFFFF);
@@ -39,7 +39,7 @@
             --card-bg: #1E1E1E;
             --text-main: #E0E0E0;
             --text-light: #A0A0A0;
-            --accent-choco: #D4AF37; 
+            --accent-choco: #D4AF37;
             --border-color: #333333;
             --header-gradient-start: #1E1E1E;
             --sub-grades-bg: #2A2A2A;
@@ -345,7 +345,8 @@
             height: 40px;
             background: var(--fade-gradient);
             transition: opacity 0.3s ease;
-            pointer-events: none; /* Permet de pouvoir cliquer sur le texte sous le fondu */
+            pointer-events: none;
+            /* Permet de pouvoir cliquer sur le texte sous le fondu */
         }
 
         /* On cache le fondu quand la carte est déroulée */
@@ -373,12 +374,59 @@
             font-style: italic;
         }
 
-        footer {
+        /* FOOTER COMPLET */
+        .site-footer {
             text-align: center;
-            padding: 4rem 0;
+            padding: 1.5rem 20px;
+            /* On a divisé l'espace par deux */
             color: var(--text-light);
-            font-size: 0.9rem;
-            margin-top: 2rem;
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            margin: 0.5rem 0;
+            /* On réduit l'espace autour du mail */
+        }
+
+        /* Si tu gardes le lien cliquable un jour, le style est prêt */
+        .footer-links a {
+            color: var(--accent-choco);
+            font-weight: bold;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Menu déroulant des mentions légales */
+        .legal-details {
+            max-width: 600px;
+            margin: 0.5rem auto 0;
+            /* On remonte le bouton Mentions Légales */
+            text-align: left;
+            background: transparent;
+        }
+
+        .legal-details summary {
+            color: var(--text-light);
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85rem;
+            list-style: none;
+            text-decoration: underline;
+        }
+
+        .legal-content {
+            margin-top: 1rem;
+            padding: 15px;
+            background: var(--sub-grades-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.8rem;
         }
 
         .legend {
@@ -426,7 +474,8 @@
             font-weight: bold;
             cursor: pointer;
             background: var(--sub-grades-bg);
-            list-style: none; /* Hide default webkit arrow */
+            list-style: none;
+            /* Hide default webkit arrow */
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -578,8 +627,28 @@
         </div>
     </section>
 
-    <footer>
-        <p>Graded by EG • Hosted on GitHub</p>
+    <footer class="site-footer">
+        <p>© 2026 FULGURANCE - Guide Indépendant.</p>
+
+        <div class="footer-links">
+            <span style="color: var(--accent-choco); font-weight: bold;">contact@fulgurance-guide.fr</span>
+        </div>
+
+        <details class="legal-details">
+            <summary>Mentions Légales</summary>
+            <div class="legal-content">
+                <p><strong>Éditeur du site :</strong> Édité à titre non professionnel par Edgar. Conformément à
+                    l'article 6 de la loi n° 2004-575 du 21 juin 2004, l'identité complète de l'éditeur est communiquée
+                    à l'hébergeur.</p>
+                <p><strong>Hébergement :</strong> Ce site est hébergé par GitHub Pages. GitHub Inc., 88 Colin P Kelly Jr
+                    St, San Francisco, CA 94107, États-Unis. Nom de domaine géré par Infomaniak.</p>
+                <p><strong>Propriété intellectuelle :</strong> L'ensemble des textes, critiques, photographies et le
+                    système de notation S.T.A.R sont la propriété exclusive de l'auteur. Toute reproduction totale ou
+                    partielle est strictement interdite sans autorisation préalable.</p>
+                <p><strong>Confidentialité & Cookies :</strong> Ce site web statique ne dépose aucun cookie de traçage
+                    publicitaire et ne collecte aucune donnée personnelle à l'insu de l'utilisateur.</p>
+            </div>
+        </details>
     </footer>
 
     <script>
@@ -673,7 +742,7 @@
                 scores: { s: "4.5", t: "4.5", a: "4.5", r: "4.5" },
                 review: "Un goût de chocolat très prononcé, relevé par une touche subtile mais juste de fleur d'oranger. La pâte à chou a du caractère, le glaçage est intense et la crème est dosée avec finesse. La pièce a une vraie personnalité grâce aux copeaux de chocolat râpés. À 3,50 €, le rapport qualité-prix est excellent pour un produit de cette lignée."
             }
-        ].map((item, index) => ({ ...item, insertionOrder: index })); 
+        ].map((item, index) => ({ ...item, insertionOrder: index }));
 
         let database = [...initialDatabase];
 
@@ -711,7 +780,7 @@
         function renderPatisseries(data) {
             const sortMethod = document.getElementById('sort-method').value;
             const sortedData = sortDatabase(data, sortMethod);
-            
+
             app.innerHTML = '';
 
             sortedData.forEach((item) => {
