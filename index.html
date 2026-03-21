@@ -666,13 +666,6 @@
         // --- DATABASE ---
         const initialDatabase = [
             {
-                name: "Maison Bouvier",
-                address: "3 Rue Toullier, 35000 Rennes",
-                imageURL: "./img/bouvier.jpg",
-                scores: { s: "4.5", t: "5*", a: "4.5", r: "4.5" },
-                review: "Une prouesse technique au niveau de la texture : glaçage impeccable, crème onctueuse aux notes croustillantes, qui mérite une note exceptionnelle. Malgré ce beau visuel réussi, la saveur de la crème pâtissière manque de puissance. L'imposante présentation est séduisante, même si l'absence de motif signature coûte cher. 3,90 € est tout à fait acceptable."
-            },
-            {
                 name: "Maison Lorand",
                 address: "16 Rue Vasselot, 35000 Rennes",
                 imageURL: "./img/lorand.jpg",
@@ -741,6 +734,13 @@
                 imageURL: "./img/halles2.jpg",
                 scores: { s: "4.5", t: "5*", a: "4", r: "5" },
                 review: "Une virtuosité technique qui mérite une note exceptionnelle : l'onctuosité et le moelleux sont parfaitement maîtrisés, le chou est incroyable en bouche. Le palais est séduit par la qualité des ingrédients. Visuellement, l'éclair est simple mais soigné : un subtil carré de chocolat posé à son extrémité suffit à lui donner une vraie personnalité. 3,40 € semble on ne peut plus juste pour un éclair de très bonne qualité."
+            },
+            {
+                name: "Maison Bouvier",
+                address: "3 Rue Toullier, 35000 Rennes",
+                imageURL: "./img/bouvier.jpg",
+                scores: { s: "5*", t: "5", a: "4.5", r: "4" },
+                review: "Une belle maîtrise technique au niveau de la texture : le glaçage est impeccable, la crème d'une onctuosité parfaite et le chou aussi tendre qu'un nuage. La véritable prouesse réside dans la saveur de chocolat, d'une intensité remarquable. L'imposante présentation est séduisante, offrant un visuel précis et parfaitement exécuté dans sa simplicité. 4,50 € s'avère tout de même un tarif légèrement élevé selon moi."
             }
         ].map((item, index) => ({ ...item, insertionOrder: index }));
 
