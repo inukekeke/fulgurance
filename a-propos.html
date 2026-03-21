@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos | FULGURANCE</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.95em%22 x=%22.1em%22 font-family=%22Playfair Display, serif%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%23D4AF37%22>F</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* DESIGN SYSTEM */
+        :root {
+            --bg-color: #FDFBF7;
+            --card-bg: #FFFFFF;
+            --text-main: #2C2C2C;
+            --text-light: #666666;
+            --accent-choco: #4A3B32;
+            --border-color: #EAEAEA;
+            --header-gradient-start: #ffffff;
+            --sub-grades-bg: #FAFAFA;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1E1E1E;
+            --text-main: #E0E0E0;
+            --text-light: #A0A0A0;
+            --accent-choco: #D4AF37;
+            --border-color: #333333;
+            --header-gradient-start: #1E1E1E;
+            --sub-grades-bg: #2A2A2A;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-y: scroll;
+            /* Fix pour la cohérence de l'alignement entre pages */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 4rem 1rem 3rem;
+            background: linear-gradient(to bottom, var(--header-gradient-start) 0%, var(--bg-color) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--accent-choco);
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        /* CONTROLS */
+        .controls-container {
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        body.dark-mode .controls-container {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #theme-toggle {
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        .back-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-choco);
+        }
+
+        /* ========================================= */
+        /* ABOUT CONTENT - TYPOGRAPHIE ÉDITORIALE    */
+        /* ========================================= */
+        .about-content {
+            max-width: 720px;
+            /* Largeur resserrée pour la lisibilité */
+            margin: 3rem auto 5rem;
+            padding: 0 20px;
+            font-size: 1.15rem;
+            /* Police plus grande pour le confort */
+            line-height: 1.8;
+            /* Plus d'espace entre les lignes */
+            letter-spacing: 0.3px;
+            /* Micro-espacement pour aérer le texte */
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-choco);
+            font-size: 2rem;
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .about-content p {
+            margin-bottom: 2rem;
+            color: var(--text-main);
+        }
+
+        .about-content ul {
+            padding-left: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-content li {
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .about-content li strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1.15rem;
+        }
+
+        .signature {
+            margin-top: 4rem;
+            text-align: right;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--accent-choco);
+            font-style: italic;
+        }
+
+        /* FOOTER COMPLET (Unifié) */
+        .site-footer {
+            text-align: center;
+            padding: 1.5rem 20px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0; /* Verrouille l'espace exact au-dessus et en-dessous */
+        }
+
+        .footer-links a {
+            color: var(--accent-choco);
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 4px; /* Le secret pour un soulignement parfait qui ne casse pas la hauteur */
+            text-decoration-thickness: 1px;
+            margin-right: 20px;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-links span {
+            color: var(--accent-choco);
+            font-weight: bold;
+        }
+
+        .legal-details {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            background: transparent;
+        }
+
+        .legal-details summary {
+            color: var(--text-light);
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85rem;
+            list-style: none;
+            text-decoration: underline;
+        }
+
+        .legal-content {
+            margin-top: 1rem;
+            padding: 15px;
+            background: var(--sub-grades-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+
+    <header>
+        <h1>FULGURANCE</h1>
+    </header>
+
+    <div class="controls-container">
+        <a href="index.html" class="back-link">← Retour au guide</a>
+        <div id="theme-toggle" onclick="toggleTheme()">MODE CLAIR</div>
+    </div>
+
+    <main class="about-content">
+        <h2>L'Origine du Projet</h2>
+        <p>Passionné de pâtisserie, d'aussi loin que je m'en souvienne, mais également fasciné par le prestige, la
+            critique, les notes, j'ai vu la création de ce guide comme une évidence lorsque j'ai découvert l'univers de
+            la pâtisserie à Rennes.</p>
+
+        <p>Initialement, ce projet devait se baser sur la notation de l'entièreté des établissements. Cependant, un
+            problème s'est posé : Certains artisans risquent de ne pas tous avoir les mêmes vitrines, ce qui rendrait la
+            cohérence entre deux notes difficile. Or, l'éclair au chocolat est régulièrement nommé pâtisserie préférée
+            des
+            Français. Considérant ceci, j'ai alors choisi de me concentrer principalement, en tout cas pour l'instant,
+            sur ce dernier. De plus, l'éclair au chocolat est parfait à juger ; il est simple, composé essentiellement
+            de 3 parties : le chou, la crème pâtissière et le glaçage. Son format basique ne laisse donc que peu de
+            place à la créativité et c'est alors au travers des détails que les artisans talentueux brillent.</p>
+
+        <p>Restait alors à trouver un nom à la hauteur de cette ambition : <strong>Fulgurance</strong>. Ce terme puise
+            son origine dans le mot latin "fulgur", qui signifie littéralement "éclair". À cela s'ajoute le suffixe
+            "-ance" qui, à l'image d'une "fragrance", résonne avec une certaine élégance, une classe à la française qui
+            correspond parfaitement au prestige recherché par ce guide.</p>
+
+        <h2>La Méthodologie S.T.A.R.</h2>
+        <p>Directement inspirée par le "card grading" dont j'ai toujours été friand, la notation de chaque éclair
+            s'articule autour de quatre aspects bien précis. Une brève description de ces derniers est disponible sur la
+            page d'accueil, mais voici le détail approfondi de la notation S.T.A.R. :</p>
+
+        <ul>
+            <li><strong>S pour Saveur (L'équilibre des goûts) :</strong>
+                L'évaluation de la saveur juge l'intensité globale et l'interaction des différents arômes. La note
+                suprême de 5 récompense un équilibre absolu et sans aucun défaut. Un 4.5 sanctionnera l'absence d'un
+                infime détail, tandis qu'un 4 désigne un très bon produit. Un 3.5 représente une saveur dans la moyenne.
+                Toute note de 3 ou moins pointera une expérience gustative décevante.</li>
+
+            <li><strong>T pour Texture (Le jeu des sensations) :</strong>
+                Ce critère note la sensation distincte de chaque élément de l'éclair en bouche. Un 5 traduit une
+                évidence : l'éclair est facile à comprendre, avec une mâche parfaite. Un 4.5 relève un léger défaut ou
+                désagrément à la dégustation, et un 4 confirme que les textures attendues sont bien présentes. La chute
+                s'amorce à 3.5 pour un manque clair de texture. À 3 ou en dessous, pour imager, la sensation s'approche
+                de celle de manger une purée au goût d'éclair.</li>
+
+            <li><strong>A pour Aspect (Le visuel et la personnalité) :</strong>
+                La première impression compte. Le 5 est réservé aux véritables chefs-d'œuvre visuels qui marquent les
+                esprits. Un 4.5 salue une proposition originale garnie de beaux détails, et un 4 récompense un éclair
+                tout simplement appétissant. Un 3.5 soulignera une décoration peut-être un peu trop simple. Les notes de
+                3 ou moins sont attribuées aux visuels ternes, fades, voire disgracieux.</li>
+
+            <li><strong>R pour Rapport (L'expérience face au prix) :</strong>
+                C'est le ratio ultime entre la qualité ressentie et le prix payé. Un 5 donne presque l'impression de
+                voler l'artisan tant la qualité surpasse le tarif. Un 4.5 indique un prix très raisonnable, et un 4 un
+                prix juste et cohérent. À 3.5, l'éclair commence à être perçu comme un poil trop onéreux. Enfin, à 3 ou
+                moins, le prix est jugé injustifié indépendamment de la qualité proposée.</li>
+        </ul>
+        <p>L'exceptionnalité et le "Black Label" :
+            La note maximale de 5 peut parfois être accompagnée d'une étoile (5★) lorsqu'elle va au-delà même de la
+            perfection technique. Cela se traduit généralement par une surprise, une touche inattendue. Si un éclair
+            parvient à obtenir cette distinction suprême sur au moins trois des quatre critères, il se voit alors
+            décerner un "Black Label", une distinction rarissime récompensant une maîtrise exemplaire.</p>
+
+        <h2>Contact</h2>
+        <p>Ce guide est vivant et évolue au gré de mes découvertes. Si vous avez un établissement à me recommander, une
+            remarque, ou si vous êtes un artisan souhaitant échanger, n'hésitez pas à m'écrire :</p>
+        <p><strong>contact@fulgurance-guide.fr</strong></p>
+
+        <div class="signature">Avec exigence et passion,<br>Edgar.</div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 FULGURANCE - Guide Indépendant.</p>
+
+        <div class="footer-links">
+            <a href="a-propos.html">À propos du Guide</a>
+            <span>contact@fulgurance-guide.fr</span>
+        </div>
+
+        <details class="legal-details">
+            <summary>Mentions Légales</summary>
+            <div class="legal-content">
+                <p><strong>Éditeur du site :</strong> Édité à titre non professionnel par Edgar. Conformément à
+                    l'article 6 de la loi n° 2004-575 du 21 juin 2004, l'identité complète de l'éditeur est communiquée
+                    à l'hébergeur.</p>
+                <p><strong>Hébergement :</strong> Ce site est hébergé par GitHub Pages. GitHub Inc., 88 Colin P Kelly Jr
+                    St, San Francisco, CA 94107, États-Unis. Nom de domaine géré par Infomaniak.</p>
+                <p><strong>Propriété intellectuelle :</strong> L'ensemble des textes, critiques, photographies et le
+                    système de notation S.T.A.R sont la propriété exclusive de l'auteur. Toute reproduction totale ou
+                    partielle est strictement interdite sans autorisation préalable.</p>
+                <p><strong>Confidentialité & Cookies :</strong> Ce site web statique ne dépose aucun cookie de traçage
+                    publicitaire et ne collecte aucune donnée personnelle à l'insu de l'utilisateur.</p>
+            </div>
+        </details>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('themePreference');
+            const themeToggleBtn = document.getElementById('theme-toggle');
+
+            if (savedTheme === 'light') {
+                document.body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = "MODE SOMBRE";
+            } else {
+                document.body.classList.add('dark-mode');
+                themeToggleBtn.textContent = "MODE CLAIR";
+            }
+        });
+
+        function toggleTheme() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            document.getElementById('theme-toggle').textContent = isDark ? "MODE CLAIR" : "MODE SOMBRE";
+            localStorage.setItem('themePreference', isDark ? 'dark' : 'light');
+        }
+    </script>
+</body>
+
+</html>
