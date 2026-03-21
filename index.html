@@ -374,11 +374,10 @@
             font-style: italic;
         }
 
-        /* FOOTER COMPLET */
+        /* FOOTER COMPLET (Unifié) */
         .site-footer {
             text-align: center;
             padding: 1.5rem 20px;
-            /* On a divisé l'espace par deux */
             color: var(--text-light);
             font-size: 0.85rem;
             margin-top: 1.5rem;
@@ -386,15 +385,19 @@
         }
 
         .footer-links {
-            margin: 0.5rem 0;
-            /* On réduit l'espace autour du mail */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0; /* Verrouille l'espace exact au-dessus et en-dessous */
         }
 
-        /* Si tu gardes le lien cliquable un jour, le style est prêt */
         .footer-links a {
             color: var(--accent-choco);
             font-weight: bold;
-            text-decoration: none;
+            text-decoration: underline;
+            text-underline-offset: 4px; /* Le secret pour un soulignement parfait qui ne casse pas la hauteur */
+            text-decoration-thickness: 1px;
+            margin-right: 20px;
             transition: opacity 0.2s;
         }
 
@@ -402,11 +405,14 @@
             opacity: 0.7;
         }
 
-        /* Menu déroulant des mentions légales */
+        .footer-links span {
+            color: var(--accent-choco);
+            font-weight: bold;
+        }
+
         .legal-details {
             max-width: 600px;
-            margin: 0.5rem auto 0;
-            /* On remonte le bouton Mentions Légales */
+            margin: 0 auto;
             text-align: left;
             background: transparent;
         }
@@ -631,7 +637,8 @@
         <p>© 2026 FULGURANCE - Guide Indépendant.</p>
 
         <div class="footer-links">
-            <span style="color: var(--accent-choco); font-weight: bold;">contact@fulgurance-guide.fr</span>
+            <a href="a-propos.html">À propos du Guide</a>
+            <span>contact@fulgurance-guide.fr</span>
         </div>
 
         <details class="legal-details">
