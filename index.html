@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fulgurance | Guide Indépendant des Meilleurs Éclairs de Bretagne</title>
-    <meta name="description" content="Découvrez Fulgurance, le guide gastronomique indépendant dédié à la recherche du meilleur éclair au chocolat à Rennes et en Bretagne. Avis, notes et critiques des artisans." />
+    <meta name="description"
+        content="Découvrez Fulgurance, le guide gastronomique indépendant dédié à la recherche du meilleur éclair au chocolat à Rennes et en Bretagne. Avis, notes et critiques des artisans." />
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.95em%22 x=%22.1em%22 font-family=%22Playfair Display, serif%22 font-size=%2290%22 font-weight=%22bold%22 fill=%22%23D4AF37%22>F</text></svg>">
 
@@ -136,6 +137,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2.5rem;
+            align-items: start;
         }
 
         /* PATISSERIE CARD DESIGN */
@@ -389,14 +391,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 1rem 0; /* Verrouille l'espace exact au-dessus et en-dessous */
+            margin: 1rem 0;
+            /* Verrouille l'espace exact au-dessus et en-dessous */
         }
 
         .footer-links a {
             color: var(--accent-choco);
             font-weight: bold;
             text-decoration: underline;
-            text-underline-offset: 4px; /* Le secret pour un soulignement parfait qui ne casse pas la hauteur */
+            text-underline-offset: 4px;
+            /* Le secret pour un soulignement parfait qui ne casse pas la hauteur */
             text-decoration-thickness: 1px;
             margin-right: 20px;
             transition: opacity 0.2s;
@@ -603,8 +607,8 @@
                         pur et simple qui donne envie de prendre une deuxième bouchée.
                     </li>
                     <li><strong>T pour Texture :</strong> Fraîcheur et moelleux de la pâte à choux, onctuosité de
-                        l'appareil, craquant du glaçage. C'est en somme ce qui différencie une soupe de légumes et de
-                        croquer dans une courge.
+                        l'appareil, craquant du glaçage. C'est en somme ce qui différencie le fait de boire une soupe de
+                        légumes, et de croquer dans une courge.
                     </li>
                     <li><strong>A pour Aspect :</strong> Style, couleur, personnalité, précision des finitions, c'est la
                         première qualité à laquelle on fait face, et souvent ce qui pousse à tester, goûter, pour
@@ -688,18 +692,11 @@
                 review: "Un modèle de sobriété. L'esthétique est travaillée et le rendu mat est irréprochable, malgré une trop grande simplicité du design. La saveur du chocolat est trop peu affirmée, et la crème, hélas trop liquide, ne tient pas en bouche. Un prix juste à 3,50 € pour cette exécution honnête."
             },
             {
-                name: "Yvan Chevalier",
-                address: "9 Rue de Nemours, 35000 Rennes",
-                imageURL: "./img/chevalier.jpg",
-                scores: { s: "5", t: "4.5", a: "5", r: "5*" },
-                review: "Un plaisir pour les yeux à la saveur exquise. La crème pâtissière est exécutée avec une précision rare. Malgré une texture proche de la perfection, un très léger excès de crème empêche d'atteindre l'idéal. Ce petit chef-d'œuvre est un véritable cadeau à 3,70 €."
-            },
-            {
                 name: "Laurent Le Daniel",
                 address: "19 Rue Jules Simon, 35000 Rennes",
                 imageURL: "./img/ledaniel.jpg",
                 scores: { s: "5", t: "4.5", a: "5*", r: "3.5" },
-                review: "Une conception d'exception dont l'esthétique marque l'esprit. L'expérience gustative est irréprochable ; l'arôme est d'une pureté rare. L'équilibre entre les éléments est presque parfait, seule une petite dose de crème en trop alourdit légèrement l'ensemble. 4,50 € est jugé bien trop onéreux cependant."
+                review: "Une conception d'exception dont l'esthétique marque l'esprit. L'expérience gustative est irréprochable ; l'arôme est d'une pureté rare. L'équilibre entre les éléments frôle l'idéal, seule une petite dose de crème en trop alourdit légèrement l'ensemble. 4,50 € est jugé bien trop onéreux cependant."
             },
             {
                 name: "Antoine Le Nôtre",
@@ -720,7 +717,7 @@
                 address: "10 Rue Ambroise Paré, 22360 Langueux",
                 imageURL: "./img/bihan.jpg",
                 scores: { s: "3", t: "3.5", a: "3", r: "4" },
-                review: "Silhouette brute et absence de personnalité marquent cet éclair à l'approche très basique. Derrière une enveloppe correcte se cache une préparation dont l'onctuosité manque de conviction et d'intensité. Un tarif de 2,45 € qui s'aligne logiquement sur une qualité sans artifice, idéale pour une consommation sur le pouce."
+                review: "Silhouette brute et absence de personnalité marquent cet éclair à l'approche très basique. Derrière une enveloppe correcte se cache une préparation dont l'onctuosité manque de conviction et d'intensité. Un tarif de 2,45 € qui s'aligne logiquement sur une offre sans artifice, idéale pour une consommation sur le pouce."
             },
             {
                 name: "Boulangerie Feuillette",
@@ -734,21 +731,35 @@
                 address: "1 Place Via Silva, 35510 Cesson-Sévigné",
                 imageURL: "./img/amande.jpg",
                 scores: { s: "4.5", t: "4.5", a: "4.5", r: "4.5" },
-                review: "Un goût de chocolat très prononcé, relevé par une touche subtile mais juste de fleur d'oranger. La pâte à choux a du caractère, le glaçage est intense et la crème est dosée avec finesse. La pièce a une vraie personnalité grâce aux copeaux de chocolat râpés. À 3,50 €, le rapport qualité-prix est excellent pour un produit de cette lignée."
+                review: "Un goût de chocolat très prononcé, relevé par une touche subtile mais juste de fleur d'oranger. La pâte à choux a du caractère, le glaçage est intense et la crème est dosée avec finesse. La pièce a une réelle personnalité grâce aux copeaux de chocolat râpés. À 3,50 €, le rapport qualité-prix est excellent pour un produit de cette lignée."
             },
             {
                 name: "Le fournil des Halles",
                 address: "24 Rue de Nemours, 35000 Rennes",
                 imageURL: "./img/halles2.jpg",
                 scores: { s: "4.5", t: "5*", a: "4", r: "5" },
-                review: "Une virtuosité technique qui mérite une note exceptionnelle : l'onctuosité et le moelleux sont parfaitement maîtrisés, le chou est incroyable en bouche. Le palais est séduit par la qualité des ingrédients. Visuellement, l'éclair est simple mais soigné : un subtil carré de chocolat posé à son extrémité suffit à lui donner une vraie personnalité. 3,40 € semble on ne peut plus juste pour un éclair de très bonne qualité."
+                review: "Une virtuosité technique qui mérite une note exceptionnelle : l'onctuosité et le moelleux sont magistralement maîtrisés, le chou est incroyable en bouche. Le palais est séduit par la qualité des ingrédients. Visuellement, l'éclair est simple mais soigné : un subtil carré de chocolat posé à son extrémité suffit à lui donner une vraie personnalité. 3,40 € semble plus qu'attractif pour un éclair de ce niveau."
             },
             {
                 name: "Maison Bouvier",
                 address: "3 Rue Toullier, 35000 Rennes",
                 imageURL: "./img/bouvier.jpg",
                 scores: { s: "5*", t: "5", a: "4.5", r: "4" },
-                review: "Une belle maîtrise technique au niveau de la texture : le glaçage est impeccable, la crème d'une onctuosité parfaite et le chou aussi tendre qu'un nuage. La véritable prouesse réside dans la saveur de chocolat, d'une intensité remarquable. L'imposante présentation est séduisante, offrant un visuel précis et parfaitement exécuté dans sa simplicité. 4,50 € s'avère cohérent."
+                review: "Une belle maîtrise technique au niveau de la texture : le glaçage est impeccable, la crème d'une onctuosité absolue et le chou aussi tendre qu'un nuage. La véritable prouesse réside dans la saveur de chocolat, d'une intensité remarquable. L'imposante présentation est séduisante, offrant un visuel précis et parfaitement exécuté dans sa simplicité. 4,50 € s'avère cohérent."
+            },
+            {
+                name: "Yvan Chevalier",
+                address: "9 Rue de Nemours, 35000 Rennes",
+                imageURL: "./img/chevalier2.jpg",
+                scores: { s: "5", t: "5*", a: "5", r: "4.5" },
+                review: "Un plaisir pour les yeux à la saveur exquise. Le chocolat s'exprime avec une précision rare, mais la véritable révélation réside dans sa texture miraculeuse. La pâte à choux et le glaçage offrent un équilibre millimétré, tandis que la crème pâtissière, dotée d'un léger grain praliné, vient sceller ce chef-d'œuvre. Une création d'une telle qualité justifie amplement son tarif de 4,00 €."
+            },
+            {
+                name: "Grand père Jules",
+                address: "28 Rue de Nemours, 35000 Rennes",
+                imageURL: "./img/gp_Jules.jpg",
+                scores: { s: "4.5", t: "5*", a: "3.5", r: "4" },
+                review: "Si ses proportions visuelles peuvent surprendre, avec un chou particulièrement large face à un glaçage plus fin, c'est à la dégustation que cet éclair dévoile son jeu. Le résultat est irréel en bouche : l'ensemble fond instantanément grâce au mariage parfait entre un chou léger et une crème aérienne. Cette délicatesse de texture s'accompagne d'un goût prononcé de chocolat, habilement soutenu par une pointe d'amande. Une expérience très douce et singulière, proposée à 4,30 €."
             }
         ].map((item, index) => ({ ...item, insertionOrder: index }));
 
