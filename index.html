@@ -336,7 +336,6 @@
             max-height: 500px;
         }
 
-        /* Le fondu par défaut */
         .review-text-container::after {
             content: "";
             position: absolute;
@@ -347,10 +346,8 @@
             background: var(--fade-gradient);
             transition: opacity 0.3s ease;
             pointer-events: none;
-            /* Permet de pouvoir cliquer sur le texte sous le fondu */
         }
 
-        /* On cache le fondu quand la carte est déroulée */
         .review-text-container.expanded::after {
             opacity: 0;
         }
@@ -375,7 +372,7 @@
             font-style: italic;
         }
 
-        /* FOOTER COMPLET (Unifié) */
+        /* FOOTER COMPLET */
         .site-footer {
             text-align: center;
             padding: 1.5rem 20px;
@@ -390,7 +387,6 @@
             justify-content: center;
             align-items: center;
             margin: 1rem 0;
-            /* Verrouille l'espace exact au-dessus et en-dessous */
         }
 
         .footer-links a {
@@ -398,7 +394,6 @@
             font-weight: bold;
             text-decoration: underline;
             text-underline-offset: 4px;
-            /* Le secret pour un soulignement parfait qui ne casse pas la hauteur */
             text-decoration-thickness: 1px;
             margin-right: 20px;
             transition: opacity 0.2s;
@@ -690,13 +685,6 @@
                 review: "Un modèle de sobriété. L'esthétique est travaillée et le rendu mat est irréprochable, malgré une trop grande simplicité du design. La saveur du chocolat est trop peu affirmée, et la crème, hélas trop liquide, ne tient pas en bouche. Un prix juste à 3,50 € pour cette exécution honnête."
             },
             {
-                name: "Laurent Le Daniel",
-                address: "19 Rue Jules Simon, 35000 Rennes",
-                imageURL: "./img/ledaniel.jpg?v=2",
-                scores: { s: "5", t: "4.5", a: "5*", r: "3.5" },
-                review: "Une conception d'exception dont l'esthétique marque l'esprit. L'expérience gustative est irréprochable ; l'arôme est d'une pureté rare. L'équilibre entre les éléments frôle l'idéal, seule une petite dose de crème en trop alourdit légèrement l'ensemble. 4,50 € est jugé bien trop onéreux cependant."
-            },
-            {
                 name: "Antoine Le Nôtre",
                 address: "4 Rue Bario, 22400 Lamballe-Armor",
                 imageURL: "./img/lenotre2.jpg?v=2",
@@ -758,6 +746,34 @@
                 imageURL: "./img/gp_Jules.jpg?v=2",
                 scores: { s: "4.5", t: "5*", a: "3.5", r: "4" },
                 review: "Si ses proportions visuelles peuvent surprendre, avec un chou particulièrement large face à un glaçage plus fin, c'est à la dégustation que cet éclair dévoile son jeu. Le résultat est irréel en bouche : l'ensemble fond instantanément grâce au mariage parfait entre un chou léger et une crème aérienne, donnant l'illusion de s'évaporer au contact du palais. Cette délicatesse de texture s'accompagne d'un goût prononcé de chocolat, habilement soutenu par une pointe d'amande. Une expérience très douce et singulière, proposée à 4,30 €."
+            },
+            {
+                name: "Laurent Le Daniel",
+                address: "19 Rue Jules Simon, 35000 Rennes",
+                imageURL: "./img/ledaniel.jpg?v=2",
+                scores: { s: "5", t: "4.5", a: "5*", r: "3.5" },
+                review: "Une conception d'exception dont l'esthétique marque l'esprit. L'expérience gustative est irréprochable ; l'arôme est d'une pureté rare. L'équilibre entre les éléments frôle l'idéal, seule une petite dose de crème en trop alourdit légèrement l'ensemble. 4,70 € paraît cependant bien trop onéreux."
+            },
+            {
+                name: "L'Attrape Douceurs",
+                address: "15 Rue Pierre Lebelle, 35000 Rennes",
+                imageURL: "./img/attrape.jpg",
+                scores: { s: "3.5", t: "3.5", a: "4.5", r: "3.5" },
+                review: "Malgré une esthétique soignée et très réussie, l'expérience en bouche ne suit pas vraiment : le goût du chocolat reste classique, sans grande profondeur, et la texture globale manque de relief. À 3,40 €, le rapport qualité-prix s'avère en demi-teinte."
+            },
+            {
+                name: "Chicherie",
+                address: "6 Rue du Parc, 35135 Chantepie",
+                imageURL: "./img/chicherie.jpg",
+                scores: { s: "4", t: "2.5", a: "3.5", r: "4" },
+                review: "Derrière une apparence simple mais authentique, cet éclair marque de vrais points grâce à une saveur chocolatée très gourmande. Malgré un chou agréable, la texture est gâchée par une crème pâtissière trop liquide. Un tarif doux de 2,80 € paraît très correct."
+            },
+            {
+                name: "Pinault",
+                address: "51 Av. André Bonnin, 35135 Chantepie",
+                imageURL: "./img/pinault.jpg",
+                scores: { s: "4", t: "4.5", a: "4", r: "5" },
+                review: "Visuellement très réussi avec sa petite noisette dorée, cet éclair marque surtout des points sur sa texture. Le goût du chocolat est traditionnel, mais l'insert croquant qui survient à mi-dégustation réveille le palais. Une excellente proposition au tarif imbattable de 2,60 €."
             }
         ].map((item, index) => ({ ...item, insertionOrder: index }));
 
