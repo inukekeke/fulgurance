@@ -7,7 +7,8 @@
     <title>Fulgurance | Guide Indépendant des Meilleurs Éclairs de Bretagne</title>
     <meta name="description"
         content="Découvrez Fulgurance, le guide gastronomique indépendant dédié à la recherche du meilleur éclair au chocolat à Rennes et en Bretagne. Avis, notes et critiques des artisans." />
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="https://fulgurance-guide.fr/favicon.png">
+    <link rel="apple-touch-icon" href="https://fulgurance-guide.fr/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -107,25 +108,64 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 1rem 20px;
-            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid #eee;
             margin-bottom: 2rem;
         }
 
-        .controls-container label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-right: 10px;
+        .sort-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
-        .controls-container select {
+        .sort-container label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .sort-container select {
             padding: 8px 12px;
             border-radius: 6px;
             border: 1px solid #ccc;
             font-size: 0.9rem;
             cursor: pointer;
+            background-color: var(--card-bg);
+            color: var(--text-main);
         }
 
+        /* STYLE DU BOUTON FLIP-FLOP */
+        #sort-order-toggle {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            font-family: 'Lato', sans-serif;
+            height: 35px;
+        }
+
+        #sort-order-toggle:hover {
+            border-color: var(--accent-choco);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sort-icon {
+            font-weight: bold;
+            color: var(--accent-choco);
+            font-size: 1.1rem;
+            line-height: 1;
+        }
 
         /* MAIN GRID LAYOUT */
         .container {
@@ -175,7 +215,7 @@
             transform: scale(1.05);
         }
 
-        /* TCG SLAB HEADER (GRADE CONTAINER) */
+        /* GRADE CONTAINER */
         .slab-header {
             background-color: var(--sub-grades-bg);
             border-bottom: 2px solid var(--border-color);
@@ -360,9 +400,21 @@
             font-weight: 600;
             padding: 0;
             font-size: 0.85rem;
-            margin-top: 5px;
-            display: block;
-            text-align: left;
+        }
+
+        .review-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .tasting-date {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            font-style: italic;
+            opacity: 0.7;
+            /* Rendu très subtil */
         }
 
         .review-text {
@@ -479,13 +531,11 @@
             cursor: pointer;
             background: var(--sub-grades-bg);
             list-style: none;
-            /* Hide default webkit arrow */
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        /* Custom Accordion Icon */
         .methodology-accordion summary::after {
             content: '+';
             font-size: 1.5rem;
@@ -561,6 +611,71 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- SYSTEME D'EMPILEMENT (STACK) --- */
+        .card-stack {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+        }
+
+        .card-stack>.card {
+            grid-area: 1 / 1;
+            transition: transform 0.4s ease, opacity 0.4s ease, z-index 0s;
+            transform: translate(calc(var(--depth) * 15px), calc(var(--depth) * 15px)) scale(calc(1 - var(--depth) * 0.02));
+
+            z-index: calc(10 - var(--depth));
+            opacity: calc(1 - var(--depth) * 0.15);
+        }
+
+        .card-stack>.card:hover {
+            transform: translateY(calc((var(--depth) * 15px) - 5px)) scale(calc(1 - var(--depth) * 0.03));
+        }
+
+        /* --- SELECTEUR DE PARFUMS --- */
+        .flavor-selector {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 20;
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+        }
+
+        /* Conteneur circulaire pour chaque foudre */
+        .flavor-icon {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: none;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            opacity: 1;
+            filter: grayscale(0);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+        }
+
+        .flavor-icon:hover {
+            transform: scale(1.15);
+        }
+
+        .flavor-icon.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .flavor-icon svg {
+            width: 60%;
+            height: 60%;
+            display: block;
+        }
     </style>
 </head>
 
@@ -578,12 +693,21 @@
         <div id="theme-toggle" onclick="toggleTheme()">MODE CLAIR</div>
 
         <div class="sort-container">
-            <label for="sort-method">Trier par :</label>
-            <select id="sort-method" onchange="renderPatisseries(database)">
-                <option value="recent">Récemment ajouté</option>
-                <option value="highest">Meilleure Note</option>
-                <option value="lowest">Moins Bonne Note</option>
+            <label for="sort-criterion">Trier par :</label>
+            <select id="sort-criterion" onchange="renderPatisseries(database)">
+                <option value="recent">Date d'ajout</option>
+                <option value="overall">Note Générale</option>
+                <option value="price">Prix</option>
+                <option value="s">Saveur (S)</option>
+                <option value="t">Texture (T)</option>
+                <option value="a">Aspect (A)</option>
+                <option value="r">Rapport (R)</option>
             </select>
+
+            <button id="sort-order-toggle" data-order="desc" onclick="toggleSortOrder()"
+                title="Inverser l'ordre de tri">
+                <span class="sort-icon">↓</span> <span class="sort-text">Décroissant</span>
+            </button>
         </div>
     </div>
 
@@ -657,36 +781,54 @@
     </footer>
 
     <script>
-        // Data format handler for string/number conversion
+        // Utilitaire de conversion des notes
         function getNumericScore(score) {
             if (typeof score === 'string') {
                 if (score.endsWith('*')) {
-                    return 5;
+                    return 5.01;
                 }
                 return parseFloat(score);
             }
             return score;
         }
 
-        // --- DATABASE ---
+        // Définition des icônes SVG
+        const lightningSvg = (color) => `
+        <svg viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+            <path fill="${color}" d="M6.5 0L0 9h3.5v7l6.5-9H6.5z"/>
+        </svg>`;
+
+        const flavorColors = {
+            chocolat: "#6b3600",
+            vanille: "#ffeab0",
+            cafe: "#946d46"
+        };
+
+        // Base de données
         const initialDatabase = [
-            {
-                name: "Maison Lorand",
-                address: "16 Rue Vasselot, 35000 Rennes",
-                imageURL: "./img/lorand.jpg?v=2",
-                scores: { s: "3", t: "2", a: "3.5", r: "3" },
-                review: "Visuellement agréable, cet éclair offre une saveur honnête, sans surprise. Cependant, la texture est en deçà des attentes, avec une crème liquide et une pâte à choux qui manque de fraîcheur. À 3,80 €, le tarif semble élevé pour la qualité proposée."
-            },
             {
                 name: "Thierry Bouvier",
                 address: "21 Rue de la Motte Picquet, 35000 Rennes",
+                flavor: "chocolat",
+                date: "20/11/2023",
                 imageURL: "./img/thierrybouvier.jpg?v=2",
                 scores: { s: "3.5", t: "3.5", a: "4", r: "4" },
                 review: "Un modèle de sobriété. L'esthétique est travaillée et le rendu mat est irréprochable, malgré une trop grande simplicité du design. La saveur du chocolat est trop peu affirmée, et la crème, hélas trop liquide, ne tient pas en bouche. Un prix juste à 3,50 € pour cette exécution honnête."
             },
             {
+                name: "Maison Lorand",
+                address: "16 Rue Vasselot, 35000 Rennes",
+                flavor: "chocolat",
+                date: "21/12/2023",
+                imageURL: "./img/lorand.jpg?v=2",
+                scores: { s: "3", t: "2", a: "3.5", r: "3" },
+                review: "Visuellement agréable, cet éclair offre une saveur honnête, sans surprise. Cependant, la texture est en deçà des attentes, avec une crème liquide et une pâte à choux qui manque de fraîcheur. À 3,80 €, le tarif semble élevé pour la qualité proposée."
+            },
+            {
                 name: "Antoine Le Nôtre",
                 address: "4 Rue Bario, 22400 Lamballe-Armor",
+                flavor: "chocolat",
+                date: "19/12/2025",
                 imageURL: "./img/lenotre2.jpg?v=2",
                 scores: { s: "4", t: "4.5", a: "4.5", r: "4" },
                 review: "Un design original mais moins mémorable que par le passé, qui laisse place à une texture intéressante grâce à ses copeaux craquants. Une pâte à choux dont la densité masque parfois la finesse de la crème, tandis que l'arôme de cacao gagnerait à être plus percutant. À 4,00 €, le rapport entre plaisir et prix est respecté."
@@ -694,6 +836,8 @@
             {
                 name: "Moulin d'Élise",
                 address: "8 Rue Jules Verne, 22360 Langueux",
+                flavor: "chocolat",
+                date: "22/12/2025",
                 imageURL: "./img/elise.jpg?v=2",
                 scores: { s: "4.5", t: "4", a: "4", r: "4.5" },
                 review: "Une exécution visuelle soignée au fini impeccable, marquée par une signature classique. Une immersion immédiate dans un cacao profond, dont l'intensité capture avec justesse l'essence même de ce que l'on attend d'un éclair. Si la délicatesse du chou s'efface un peu trop devant la générosité de la crème, l'expérience globale demeure équilibrée. À 3,50 €, cette proposition s'impose comme une évidence tarifaire au regard de la qualité proposée."
@@ -701,6 +845,8 @@
             {
                 name: "Maison Le Bihan",
                 address: "10 Rue Ambroise Paré, 22360 Langueux",
+                flavor: "chocolat",
+                date: "22/12/2025",
                 imageURL: "./img/bihan.jpg?v=2",
                 scores: { s: "3", t: "3.5", a: "3", r: "4" },
                 review: "Silhouette brute et absence de personnalité marquent cet éclair à l'approche très basique. Derrière une enveloppe correcte se cache une préparation dont l'onctuosité manque de conviction et d'intensité. Un tarif de 2,45 € qui s'aligne logiquement sur une offre sans artifice, idéale pour une consommation sur le pouce."
@@ -708,6 +854,8 @@
             {
                 name: "Boulangerie Feuillette",
                 address: "7 Rue Ambroise Paré, 22360 Langueux",
+                flavor: "chocolat",
+                date: "22/12/2025",
                 imageURL: "./img/feuillette.jpg?v=2",
                 scores: { s: "3.5", t: "3.5", a: "4.5", r: "4" },
                 review: "Une pièce magnifique, originale et élégante, malheureusement freinée par un chou peu tendre et une intensité faible. Les billes croquantes en surface viennent redonner du souffle à l'ensemble. À 3,30 €, le tarif demeure juste pour un travail visuel aussi abouti."
@@ -715,6 +863,8 @@
             {
                 name: "Boulangerie Amande",
                 address: "1 Place Via Silva, 35510 Cesson-Sévigné",
+                flavor: "chocolat",
+                date: "16/03/2026",
                 imageURL: "./img/amande.jpg?v=2",
                 scores: { s: "4.5", t: "4.5", a: "4.5", r: "4.5" },
                 review: "Un goût de chocolat très prononcé, relevé par une touche subtile mais juste de fleur d'oranger. La pâte à choux a du caractère, le glaçage est intense et la crème est dosée avec finesse. La pièce a une réelle personnalité grâce aux copeaux de chocolat râpés. À 3,50 €, le rapport qualité-prix est excellent pour un produit de cette lignée."
@@ -722,6 +872,8 @@
             {
                 name: "Le fournil des Halles",
                 address: "24 Rue de Nemours, 35000 Rennes",
+                flavor: "chocolat",
+                date: "20/03/2026",
                 imageURL: "./img/halles2.jpg?v=2",
                 scores: { s: "4.5", t: "5*", a: "4", r: "5" },
                 review: "Une virtuosité technique qui mérite une note exceptionnelle : l'onctuosité et le moelleux sont magistralement maîtrisés, le chou est incroyable en bouche. Le palais est séduit par la qualité des ingrédients. Visuellement, l'éclair est simple mais soigné : un subtil carré de chocolat posé à son extrémité suffit à lui donner une vraie personnalité. 3,40 € semble plus qu'attractif pour un éclair de ce niveau."
@@ -729,6 +881,8 @@
             {
                 name: "Maison Bouvier",
                 address: "3 Rue Toullier, 35000 Rennes",
+                flavor: "chocolat",
+                date: "23/03/2026",
                 imageURL: "./img/bouvier.jpg?v=2",
                 scores: { s: "5*", t: "5", a: "4.5", r: "4" },
                 review: "Une belle maîtrise technique au niveau de la texture : le glaçage est impeccable, la crème d'une onctuosité absolue et le chou aussi tendre qu'un nuage. La véritable prouesse réside dans la saveur de chocolat, d'une intensité remarquable. L'imposante présentation est séduisante, offrant un visuel précis et parfaitement exécuté dans sa simplicité. 4,50 € s'avère cohérent."
@@ -736,6 +890,8 @@
             {
                 name: "Yvan Chevalier",
                 address: "9 Rue de Nemours, 35000 Rennes",
+                flavor: "chocolat",
+                date: "24/03/2026",
                 imageURL: "./img/chevalier2.jpg?v=2",
                 scores: { s: "5", t: "5*", a: "5", r: "4.5" },
                 review: "Un plaisir pour les yeux à la saveur exquise. Le chocolat s'exprime avec une précision rare, mais la véritable révélation réside dans sa texture miraculeuse. La pâte à choux et le glaçage offrent un équilibre millimétré, tandis que la crème pâtissière, dotée d'un léger grain praliné, vient sceller ce chef-d'œuvre. Une création d'une telle qualité justifie amplement son tarif de 4,00 €."
@@ -743,6 +899,8 @@
             {
                 name: "Grand père Jules",
                 address: "28 Rue de Nemours, 35000 Rennes",
+                flavor: "chocolat",
+                date: "24/03/2026",
                 imageURL: "./img/gp_Jules.jpg?v=2",
                 scores: { s: "4.5", t: "5*", a: "3.5", r: "4" },
                 review: "Si ses proportions visuelles peuvent surprendre, avec un chou particulièrement large face à un glaçage plus fin, c'est à la dégustation que cet éclair dévoile son jeu. Le résultat est irréel en bouche : l'ensemble fond instantanément grâce au mariage parfait entre un chou léger et une crème aérienne, donnant l'illusion de s'évaporer au contact du palais. Cette délicatesse de texture s'accompagne d'un goût prononcé de chocolat, habilement soutenu par une pointe d'amande. Une expérience très douce et singulière, proposée à 4,30 €."
@@ -750,6 +908,8 @@
             {
                 name: "Laurent Le Daniel",
                 address: "19 Rue Jules Simon, 35000 Rennes",
+                flavor: "chocolat",
+                date: "26/03/2026",
                 imageURL: "./img/ledaniel.jpg?v=2",
                 scores: { s: "5", t: "4.5", a: "5*", r: "3.5" },
                 review: "Une conception d'exception dont l'esthétique marque l'esprit. L'expérience gustative est irréprochable ; l'arôme est d'une pureté rare. L'équilibre entre les éléments frôle l'idéal, seule une petite dose de crème en trop alourdit légèrement l'ensemble. 4,70 € paraît cependant bien trop onéreux."
@@ -757,6 +917,8 @@
             {
                 name: "L'Attrape Douceurs",
                 address: "15 Rue Pierre Lebelle, 35000 Rennes",
+                flavor: "chocolat",
+                date: "26/03/2026",
                 imageURL: "./img/attrape.jpg",
                 scores: { s: "3.5", t: "3.5", a: "4.5", r: "3.5" },
                 review: "Malgré une esthétique soignée et très réussie, l'expérience en bouche ne suit pas vraiment : le goût du chocolat reste classique, sans grande profondeur, et la texture globale manque de relief. À 3,40 €, le rapport qualité-prix s'avère en demi-teinte."
@@ -764,6 +926,8 @@
             {
                 name: "Chicherie",
                 address: "6 Rue du Parc, 35135 Chantepie",
+                flavor: "chocolat",
+                date: "26/03/2026",
                 imageURL: "./img/chicherie.jpg",
                 scores: { s: "4", t: "2.5", a: "3.5", r: "4" },
                 review: "Derrière une apparence simple mais authentique, cet éclair marque de vrais points grâce à une saveur chocolatée très gourmande. Malgré un chou agréable, la texture est gâchée par une crème pâtissière trop liquide. Un tarif doux de 2,80 € paraît très correct."
@@ -771,6 +935,8 @@
             {
                 name: "Pinault",
                 address: "51 Av. André Bonnin, 35135 Chantepie",
+                flavor: "chocolat",
+                date: "26/03/2026",
                 imageURL: "./img/pinault.jpg",
                 scores: { s: "4", t: "4.5", a: "4", r: "5" },
                 review: "Visuellement très réussi avec sa petite noisette dorée, cet éclair marque surtout des points sur sa texture. Le goût du chocolat est traditionnel, mais l'insert croquant qui survient à mi-dégustation réveille le palais. Une excellente proposition au tarif imbattable de 2,60 €."
@@ -779,126 +945,206 @@
 
         let database = [...initialDatabase];
 
-        // --- SORTING LOGIC ---
-        function sortDatabase(data, sortMethod) {
-            let sortedData = [...data];
+        // Utilitaire pour extraire la bonne valeur selon le critère choisi
+        function getValueForSorting(item, criterion) {
+            if (criterion === 'overall') return item.avgScore;
+            if (criterion === 'recent') return item.insertionOrder;
+            if (['s', 't', 'a', 'r'].includes(criterion)) return getNumericScore(item.scores[criterion]);
 
-            switch (sortMethod) {
-                case 'highest':
-                    sortedData.sort((a, b) => {
-                        const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
-                        const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
-                        return avgB - avgA;
-                    });
-                    break;
-                case 'lowest':
-                    sortedData.sort((a, b) => {
-                        const avgA = (getNumericScore(a.scores.s) + getNumericScore(a.scores.t) + getNumericScore(a.scores.a) + getNumericScore(a.scores.r)) / 4;
-                        const avgB = (getNumericScore(b.scores.s) + getNumericScore(b.scores.t) + getNumericScore(b.scores.a) + getNumericScore(b.scores.r)) / 4;
-                        return avgA - avgB;
-                    });
-                    break;
-                case 'recent':
-                default:
-                    // Default chronological order
-                    sortedData.sort((a, b) => b.insertionOrder - a.insertionOrder);
-                    break;
+            if (criterion === 'price') {
+                // Astuce magique : On cherche "X,XX €" dans le texte de la review !
+                const match = item.review.match(/(\d+)[.,](\d+)\s*€/);
+                if (match) return parseFloat(match[1] + '.' + match[2]);
+                return 999; // S'il n'y a pas de prix, on le met très haut pour qu'il aille à la fin
             }
-            return sortedData;
+            return 0;
         }
 
-        // --- MAIN RENDER FUNCTION ---
+        // Regroupement et logique de tri intelligente
+        function groupAndSortDatabase(data, criterion, order) {
+            const groupsMap = new Map();
+
+            // 1. Créer les paquets et calculer la note générale de base
+            data.forEach(item => {
+                if (!groupsMap.has(item.name)) {
+                    groupsMap.set(item.name, { name: item.name, eclairs: [] });
+                }
+                const group = groupsMap.get(item.name);
+                item.avgScore = (getNumericScore(item.scores.s) + getNumericScore(item.scores.t) + getNumericScore(item.scores.a) + getNumericScore(item.scores.r)) / 4;
+                group.eclairs.push(item);
+            });
+
+            let groupedData = Array.from(groupsMap.values());
+
+            // 2. Trier les éclairs À L'INTÉRIEUR de chaque paquet
+            groupedData.forEach(group => {
+                group.eclairs.sort((a, b) => {
+                    let valA = getValueForSorting(a, criterion);
+                    let valB = getValueForSorting(b, criterion);
+                    // Si ordre croissant (asc), le plus petit passe devant
+                    return order === 'asc' ? valA - valB : valB - valA;
+                });
+            });
+
+            // 3. Trier les paquets entre eux (en se basant sur leur meilleur/pire représentant, qui est maintenant à l'index 0 !)
+            groupedData.sort((a, b) => {
+                let valA = getValueForSorting(a.eclairs[0], criterion);
+                let valB = getValueForSorting(b.eclairs[0], criterion);
+                return order === 'asc' ? valA - valB : valB - valA;
+            });
+
+            return groupedData;
+        }
+
+        // Logique de changement de parfum
+        function switchFlavor(stackId, selectedFlavor) {
+            const stack = document.getElementById(stackId);
+            const cards = Array.from(stack.querySelectorAll('.card'));
+            const icons = Array.from(stack.querySelectorAll('.flavor-icon'));
+
+            icons.forEach(icon => {
+                if (icon.getAttribute('data-flavor') === selectedFlavor) {
+                    icon.classList.add('active');
+                } else {
+                    icon.classList.remove('active');
+                }
+            });
+
+            let depthCounter = 1;
+            cards.forEach(card => {
+                if (card.getAttribute('data-flavor') === selectedFlavor) {
+                    card.style.setProperty('--depth', '0');
+                } else {
+                    card.style.setProperty('--depth', depthCounter.toString());
+                    depthCounter++;
+                }
+            });
+        }
+
         const app = document.getElementById('app');
 
+        function toggleSortOrder() {
+            const btn = document.getElementById('sort-order-toggle');
+            const currentOrder = btn.getAttribute('data-order');
+            const icon = btn.querySelector('.sort-icon');
+            const text = btn.querySelector('.sort-text');
+
+            if (currentOrder === 'desc') {
+                btn.setAttribute('data-order', 'asc');
+                icon.innerHTML = '↑';
+                text.innerHTML = 'Croissant';
+            } else {
+                btn.setAttribute('data-order', 'desc');
+                icon.innerHTML = '↓';
+                text.innerHTML = 'Décroissant';
+            }
+            renderPatisseries(database);
+        }
+
         function renderPatisseries(data) {
-            const sortMethod = document.getElementById('sort-method').value;
-            const sortedData = sortDatabase(data, sortMethod);
+            const criterion = document.getElementById('sort-criterion').value;
+            const order = document.getElementById('sort-order-toggle').getAttribute('data-order');
+
+            const groupedData = groupAndSortDatabase(data, criterion, order);
 
             app.innerHTML = '';
 
-            sortedData.forEach((item) => {
-                // Calculate Average
-                const total = getNumericScore(item.scores.s) + getNumericScore(item.scores.t) + getNumericScore(item.scores.a) + getNumericScore(item.scores.r);
-                const average = (total / 4).toFixed(1);
+            groupedData.forEach(group => {
+                const stackId = group.name.toLowerCase().replace(/\s+/g, '-');
+                const safeStackId = stackId;
 
-                // Map Link Builder
-                const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' ' + item.address)}`;
+                const stackContainer = document.createElement('div');
+                stackContainer.className = 'card-stack';
+                stackContainer.id = stackId;
 
-                // EVALUATION LOGIC - BLACK LABEL ASSIGNMENT
-                const exceptionalCount = [item.scores.s, item.scores.t, item.scores.a, item.scores.r].filter(score => score === "5*").length;
-                const isBlackLabel = exceptionalCount >= 3;
+                // Création du sélecteur de parfum (si plusieurs parfums disponibles)
+                let flavorSelectorHTML = '';
+                if (group.eclairs.length > 1 && group.eclairs[0].flavor) {
+                    flavorSelectorHTML = `<div class="flavor-selector">`;
 
-                let gradeClass = "";
-                let gradeColor = "#4A3B32";
+                    const flavorOrder = { 'chocolat': 1, 'vanille': 2, 'cafe': 3 };
 
-                if (isBlackLabel) {
-                    gradeClass = "black-label";
-                } else if (average >= 4.5) {
-                    gradeColor = "#D4AF37"; // Gold Level
-                } else if (average >= 4.0) {
-                    gradeColor = "#C0C0C0"; // Silver Level
-                } else {
-                    gradeColor = "#CD7F32"; // Bronze Level
+                    const eclairsForIcons = [...group.eclairs].sort((a, b) => {
+                        return (flavorOrder[a.flavor] || 99) - (flavorOrder[b.flavor] || 99);
+                    });
+
+                    const bestEclair = group.eclairs[0];
+
+                    eclairsForIcons.forEach((eclair) => {
+                        const isActive = (eclair === bestEclair) ? 'active' : '';
+                        const color = flavorColors[eclair.flavor] || "#9c27b0";
+
+                        flavorSelectorHTML += `
+                            <div class="flavor-icon ${isActive}" 
+                                 data-flavor="${eclair.flavor}" 
+                                 title="Éclair ${eclair.flavor.charAt(0).toUpperCase() + eclair.flavor.slice(1)}" 
+                                 onclick="switchFlavor('${safeStackId}', '${eclair.flavor}')">
+                                ${lightningSvg(color)}
+                            </div>`;
+                    });
+                    flavorSelectorHTML += `</div>`;
                 }
 
-                // SUB-GRADE BUILDER (S.T.A.R.)
-                const renderKeys = [
-                    { dataKey: 's', label: 'S' },
-                    { dataKey: 't', label: 'T' },
-                    { dataKey: 'a', label: 'A' },
-                    { dataKey: 'r', label: 'R' }
-                ];
+                stackContainer.innerHTML = flavorSelectorHTML;
 
-                let subGradesHTML = '<div class="sub-grades-container">';
+                // Génération des cartes
+                group.eclairs.forEach((item, index) => {
+                    const average = item.avgScore.toFixed(1);
+                    const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.address)}`;
 
-                renderKeys.forEach(k => {
-                    const val = item.scores[k.dataKey];
-                    const isExceptional = (val === "5*");
-                    const boxClass = isExceptional ? 'sub-grade black-label' : 'sub-grade';
-                    const displayVal = isExceptional ? '5★' : val;
+                    const exceptionalCount = [item.scores.s, item.scores.t, item.scores.a, item.scores.r].filter(score => score === "5*").length;
+                    const isBlackLabel = exceptionalCount >= 3;
 
-                    subGradesHTML += `
-                        <div class="${boxClass}">
-                            <span class="sg-label">${k.label}</span>
-                            <span class="sg-value">${displayVal}</span>
+                    let gradeClass = isBlackLabel ? "black-label" : "";
+                    let gradeColor = isBlackLabel ? "#1a1a1a" : (average >= 4.5 ? "#D4AF37" : (average >= 4.0 ? "#C0C0C0" : "#CD7F32"));
+
+                    const renderKeys = [
+                        { dataKey: 's', label: 'S' }, { dataKey: 't', label: 'T' },
+                        { dataKey: 'a', label: 'A' }, { dataKey: 'r', label: 'R' }
+                    ];
+
+                    let subGradesHTML = '<div class="sub-grades-container">';
+                    renderKeys.forEach(k => {
+                        const val = item.scores[k.dataKey];
+                        const isExceptional = (val === "5*");
+                        const boxClass = isExceptional ? 'sub-grade black-label' : 'sub-grade';
+                        subGradesHTML += `<div class="${boxClass}"><span class="sg-label">${k.label}</span><span class="sg-value">${isExceptional ? '5★' : val}</span></div>`;
+                    });
+                    subGradesHTML += '</div>';
+
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.setAttribute('data-flavor', item.flavor || 'chocolat');
+                    card.style.setProperty('--depth', index.toString());
+
+                    card.innerHTML = `
+                <div class="slab-header">
+                    <div class="slab-grade-box ${gradeClass}" style="background:${gradeColor}">${average}</div>
+                </div>
+                <div class="card-image-container">
+                    <img src="${item.imageURL || 'https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE'}" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE+Image+introuvable';" 
+                         alt="Éclair ${item.flavor || ''} de ${item.name}">
+                </div>
+                <div class="card-body">
+                    <h2 class="place-name">${item.name}</h2>
+                    <a href="${mapsLink}" target="_blank" class="place-address">📍 ${item.address}</a>
+                    ${subGradesHTML}
+                    <div class="review-section">
+                        <div class="review-text-container" id="review-${safeStackId}-${item.flavor}">
+                            <p class="review-text">"${item.review}"</p>
                         </div>
-                    `;
+                        <div class="review-footer">
+                            <button class="read-more-button" data-target="review-${safeStackId}-${item.flavor}" onclick="toggleReview(this)">Lire la suite...</button>
+                            <span class="tasting-date">${item.date ? `Dégusté le ${item.date}` : ''}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+                    stackContainer.appendChild(card);
                 });
-                subGradesHTML += '</div>';
 
-                // DOM Node Creation
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.id = item.name.toLowerCase().replace(/\s+/g, '-');
-
-                card.innerHTML = `
-                    <div class="slab-header">
-                        <div class="slab-grade-box ${gradeClass}" style="background:${gradeColor}">
-                            ${average}
-                        </div>
-                    </div>
-
-                    <div class="card-image-container">
-                        <img src="${item.imageURL || 'https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE'}" 
-                             onerror="this.onerror=null;this.src='https://placehold.co/400x200/FDFBF7/4A3B32?text=FULGURANCE+Image+introuvable';" 
-                             alt="Éclair de la pâtisserie ${item.name}">
-                    </div>
-                    
-                    <div class="card-body">
-                        <h2 class="place-name">${item.name}</h2>
-                        <a href="${mapsLink}" target="_blank" class="place-address">📍 ${item.address}</a>
-
-                        ${subGradesHTML}
-
-                        <div class="review-section">
-                            <div class="review-text-container" id="review-${item.name.replace(/\s/g, '-')}-${item.address.substring(0, 5)}">
-                                <p class="review-text">"${item.review}"</p>
-                            </div>
-                            <button class="read-more-button" data-target="review-${item.name.replace(/\s/g, '-')}-${item.address.substring(0, 5)}" onclick="toggleReview(this)">Lire la suite...</button>
-                        </div>
-                    </div>
-                `;
-                app.appendChild(card);
+                app.appendChild(stackContainer);
             });
         }
 
@@ -946,36 +1192,40 @@
             const patisserieId = urlParams.get('p');
 
             if (patisserieId) {
-                const targetCard = document.getElementById(patisserieId);
-                if (targetCard) {
-                    // Hide all irrelevant cards
-                    document.querySelectorAll('.card').forEach(c => {
-                        if (c !== targetCard) c.style.display = 'none';
+                const targetStack = document.getElementById(patisserieId);
+
+                if (targetStack) {
+                    // Cacher les autres éléments
+                    document.querySelectorAll('.card-stack').forEach(stack => {
+                        if (stack !== targetStack) stack.style.display = 'none';
                     });
 
-                    // Hide sorting menu
                     document.querySelector('.sort-container').style.display = 'none';
 
-                    // Center the targeted card
+                    // Centrer la carte sélectionnée
                     const appContainer = document.getElementById('app');
                     appContainer.style.display = 'flex';
                     appContainer.style.justifyContent = 'center';
                     appContainer.style.marginTop = '2rem';
 
-                    targetCard.style.maxWidth = '500px';
-                    targetCard.style.width = '100%';
+                    targetStack.style.maxWidth = '500px';
+                    targetStack.style.width = '100%';
 
-                    // Auto-expand review text
-                    const btn = targetCard.querySelector('.read-more-button');
-                    if (btn) toggleReview(btn);
+                    // Déplier la review et ajouter le bouton retour
+                    const cardsInStack = targetStack.querySelectorAll('.card');
 
-                    // Inject "Go Back" functionality
-                    const backBtn = document.createElement('button');
-                    backBtn.innerHTML = "← Voir tout le guide";
-                    backBtn.className = "read-more-button";
-                    backBtn.style.marginBottom = "1rem";
-                    backBtn.onclick = () => window.location.href = window.location.pathname;
-                    targetCard.querySelector('.card-body').prepend(backBtn);
+                    cardsInStack.forEach(card => {
+                        const btn = card.querySelector('.read-more-button');
+                        if (btn) toggleReview(btn);
+
+                        const backBtn = document.createElement('button');
+                        backBtn.innerHTML = "← Voir tout le guide";
+                        backBtn.className = "read-more-button";
+                        backBtn.style.marginBottom = "1rem";
+                        backBtn.style.alignSelf = "flex-start";
+                        backBtn.onclick = () => window.location.href = window.location.pathname;
+                        card.querySelector('.card-body').prepend(backBtn);
+                    });
                 }
             }
         });
