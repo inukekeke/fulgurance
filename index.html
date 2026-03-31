@@ -896,6 +896,42 @@
                 imageURL: "./img/amande2.jpg",
                 scores: { s: "5*", t: "4.5", a: "5*", r: "4" },
                 review: "Un éclair création qui témoigne de toute la passion de l'artisan. Avant toute chose, le visuel est impeccable, ne donnant qu'une seule envie : goûter à cette œuvre. Cette maîtrise se traduit parfaitement en bouche, avec un praliné aux noix de pécan, un caramel et une légère touche de vanille se mariant divinement, le tout relevé par une subtile fleur de sel. On ne change pas une équipe qui gagne puisque le jeu des sensations est lui aussi merveilleux, grâce au côté aérien de la crème, au croquant évident des noix et à la tendresse du chou. Seul petit bémol : sa générosité rend la dégustation un chouïa difficile. Enfin, si un prix de 4,80 € paraît élevé, il reste tout à fait compréhensible pour une telle proposition."
+            },
+            {
+                name: "Le fournil des Halles",
+                address: "24 Rue de Nemours, 35000 Rennes",
+                flavor: "cafe",
+                date: "31/03/2026",
+                imageURL: "./img/hallescafe.jpg",
+                scores: { s: "5", t: "5", a: "4", r: "5" },
+                review: "Une maîtrise qui force le respect. Le jeu des textures est une grande réussite, offrant un chou d'une tendresse remarquable et une crème d'une onctuosité parfaite, le tout couplé à un goût de café pur et subjuguant qui tapisse le palais. Avec son esthétique épurée et soignée, un tarif de seulement 3,40 € est une véritable aubaine pour un éclair de cette envergure."
+            },
+            {
+                name: "Maison Bouvier",
+                address: "3 Rue Toullier, 35000 Rennes",
+                flavor: "vanille",
+                date: "31/03/2026",
+                imageURL: "./img/bouvier2.jpg",
+                scores: { s: "4.5", t: "4", a: "4", r: "4" },
+                review: "Une dégustation qui laisse un léger sentiment d'inachevé. Si la saveur de la vanille s'avère très belle et s'accompagne d'une crème d'une douceur fondante indéniable, l'équilibre en bouche est à peine freiné par une pâte à choux légèrement en retrait. Visuellement, l'exécution est propre mais d'une trop grande simplicité. Face à une esthétique aussi basique et un chou effacé, l'addition de 4,50 € semble injustifié."
+            },
+            {
+                name: "Le Fournil de Brocéliande",
+                address: "24 Av. Jean Janvier, 35000 Rennes",
+                flavor: "chocolat",
+                date: "31/03/2026",
+                imageURL: "./img/broceliande.jpg",
+                scores: { s: "2.5", t: "2.5", a: "3", r: "4" },
+                review: "Une expérience pour le moins déroutante. Le palais est immédiatement surpris par un arrière-goût fumé étrange qui vient lourdement parasiter la dégustation. Ce déséquilibre des saveurs se prolonge dans la mâche avec une pâte à choux beaucoup trop présente qui par étouffer le peu de crème et de glaçage. L'esthétique reste quant à elle très basique, sans réel effort de présentation. Le tarif de 2,90 € sauve les meubles et reste cohérent pour ce niveau de gamme, mais le plaisir n'y est malheureusement pas."
+            },
+            {
+                name: "Le Fournil de Brocéliande",
+                address: "24 Av. Jean Janvier, 35000 Rennes",
+                flavor: "vanille-speculos",
+                date: "31/03/2026",
+                imageURL: "./img/broceliande2.jpg",
+                scores: { s: "4", t: "3", a: "4", r: "4.5" },
+                review: "Une dégustation contrastée. Si un curieux arrière-goût fumé vient s'inviter en toile de fond, les excellentes saveurs de vanille et de spéculoos parviennent heureusement à s'imposer. L'équilibre en bouche est toutefois rompu par un chou trop imposant qui étouffe un peu la garniture. Le visuel fait en revanche mouche et se démarque joliment grâce aux généreux copeaux de spéculoos. À 3,10 €, le tarif reste tout à fait correct pour une telle proposition."
             }
 
         ].map((item, index) => ({ ...item, insertionOrder: index }));
@@ -1154,6 +1190,8 @@
 
             const urlParams = new URLSearchParams(window.location.search);
             const patisserieId = urlParams.get('p');
+            // Le fameux fix : on cherche le parfum dans l'URL, sinon c'est chocolat par défaut !
+            const targetFlavor = urlParams.get('f') || 'chocolat';
 
             if (patisserieId) {
                 const targetStack = document.getElementById(patisserieId);
@@ -1172,6 +1210,20 @@
 
                     targetStack.style.maxWidth = '500px';
                     targetStack.style.width = '100%';
+
+                    const hasRequestedFlavor = targetFlavor ? targetStack.querySelector(`.card[data-flavor="${targetFlavor}"]`) : null;
+
+                    if (hasRequestedFlavor) {
+                        switchFlavor(patisserieId, targetFlavor);
+                    } else {
+                        const firstIcon = targetStack.querySelector('.flavor-icon');
+
+                        const fallbackFlavor = firstIcon
+                            ? firstIcon.getAttribute('data-flavor')
+                            : targetStack.querySelector('.card').getAttribute('data-flavor');
+
+                        switchFlavor(patisserieId, fallbackFlavor);
+                    }
 
                     const cardsInStack = targetStack.querySelectorAll('.card');
 
