@@ -258,10 +258,10 @@
         .black-label::after {
             content: "";
             position: absolute;
-            top: -50%;
+            top: -100%;
             left: -50%;
             width: 200%;
-            height: 200%;
+            height: 300%;
             background: linear-gradient(to right,
                     rgba(255, 255, 255, 0) 0%,
                     rgba(255, 255, 255, 0.3) 50%,
@@ -425,63 +425,131 @@
 
         /* FOOTER COMPLET */
         .site-footer {
-            text-align: center;
-            padding: 1.5rem 20px;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-top: 1.5rem;
+            padding: 3rem 20px 2rem;
             border-top: 1px solid var(--border-color);
-        }
-
-        .footer-links {
+            margin-top: 2rem;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            margin: 1rem 0;
         }
 
-        .footer-links a {
+        .footer-primary-links {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-primary-links .footer-link:first-child {
+            text-align: right;
+        }
+
+        .footer-primary-links .footer-link:last-child {
+            text-align: left;
+        }
+
+        .footer-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
             color: var(--accent-choco);
-            font-weight: bold;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            text-decoration-thickness: 1px;
-            margin-right: 20px;
-            transition: opacity 0.2s;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
         }
 
-        .footer-links a:hover {
+        .footer-link:hover {
             opacity: 0.7;
         }
 
-        .footer-links span {
-            color: var(--accent-choco);
-            font-weight: bold;
+        .footer-separator {
+            color: var(--text-light);
+            font-size: 1rem;
+            opacity: 0.5;
+            user-select: none;
+            text-align: center;
         }
 
-        .legal-details {
+        .footer-secondary-links {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-            background: transparent;
         }
 
-        .legal-details summary {
+        .footer-secondary-links> :first-child {
+            text-align: right;
+        }
+
+        .footer-secondary-links> :last-child {
+            text-align: left;
+        }
+
+        .footer-contact {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .legal-trigger {
             color: var(--text-light);
             cursor: pointer;
-            text-align: center;
-            font-size: 0.85rem;
-            list-style: none;
             text-decoration: underline;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
 
-        .legal-content {
-            margin-top: 1rem;
-            padding: 15px;
-            background: var(--sub-grades-bg);
+        .legal-trigger:hover {
+            color: var(--accent-choco);
+        }
+
+        .elegant-modal {
+            background: var(--card-bg);
+            color: var(--text-main);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.8rem;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .elegant-modal::backdrop {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-choco);
+        }
+
+        .elegant-modal h3 {
+            margin-top: 0;
+            color: var(--accent-choco);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .elegant-modal p {
+            margin-bottom: 10px;
         }
 
         .legend {
@@ -504,110 +572,22 @@
             .controls-container {
                 text-align: center;
             }
-        }
 
-        /* ABOUT SECTION */
-        .about-section {
-            max-width: 800px;
-            margin: 4rem auto 2rem;
-            padding: 0 20px;
-            color: var(--text-main);
-            font-size: 0.95rem;
-        }
-
-        /* METHODOLOGY ACCORDION */
-        .methodology-accordion {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-
-        .methodology-accordion summary {
-            padding: 15px 20px;
-            font-weight: bold;
-            cursor: pointer;
-            background: var(--sub-grades-bg);
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .methodology-accordion summary::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--accent-choco);
-            transition: transform 0.3s;
-        }
-
-        .methodology-accordion[open] summary::after {
-            transform: rotate(45deg);
-        }
-
-        .accordion-content {
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .accordion-content ul {
-            padding-left: 20px;
-        }
-
-        .accordion-content li {
-            margin-bottom: 8px;
-        }
-
-        /* DISCLAIMER BOX */
-        .disclaimer-box {
-            background-color: transparent;
-            border-left: 4px solid var(--accent-choco);
-            padding: 10px 20px;
-            margin-bottom: 2rem;
-            font-style: italic;
-            color: var(--text-light);
-        }
-
-        .disclaimer-box p {
-            margin: 5px 0 0 0;
-            font-size: 0.9rem;
-        }
-
-        /* SUGGESTION BOX */
-        .suggest-box {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px dashed var(--border-color);
-        }
-
-        .suggest-box a {
-            color: var(--accent-choco);
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 1px solid var(--accent-choco);
-            transition: opacity 0.2s;
-        }
-
-        .suggest-box a:hover {
-            opacity: 0.7;
-        }
-
-        /* ACCORDION ANIMATION */
-        .methodology-accordion[open] .accordion-content {
-            animation: slideDownFade 0.35s ease-out forwards;
-            transform-origin: top;
-        }
-
-        @keyframes slideDownFade {
-            0% {
-                opacity: 0;
-                transform: translateY(-15px);
+            .footer-primary-links,
+            .footer-secondary-links {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
             }
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
+            .footer-primary-links .footer-link,
+            .footer-secondary-links> :first-child,
+            .footer-secondary-links> :last-child {
+                text-align: center !important;
+            }
+
+            .footer-separator {
+                display: none;
             }
         }
 
@@ -713,71 +693,39 @@
     <main class="container" id="app">
     </main>
 
-    <section class="about-section">
-        <details class="methodology-accordion">
-            <summary>Comprendre la notation (Critères S.T.A.R)</summary>
-            <div class="accordion-content">
-                <p>Chaque éclair est évalué rigoureusement selon quatre axes :</p>
-                <ul>
-                    <li><strong>S pour Saveur :</strong> Intensité et pureté du parfum, équilibre du sucre, bref, le goût
-                        pur et simple qui donne envie de prendre une deuxième bouchée.
-                    </li>
-                    <li><strong>T pour Texture :</strong> Fraîcheur et moelleux de la pâte à choux, onctuosité de
-                        l'appareil, craquant du glaçage. C'est en somme ce qui différencie le fait de boire une soupe de
-                        légumes, et de croquer dans une courge.
-                    </li>
-                    <li><strong>A pour Aspect :</strong> Style, couleur, personnalité, précision des finitions, c'est la
-                        première qualité à laquelle on fait face, et souvent ce qui pousse à tester, goûter, pour
-                        ultimement noter.
-                    </li>
-                    <li><strong>R pour Rapport :</strong> L'équilibre entre les trois premiers axes, l'expérience de la
-                        dégustation, et le prix finalement payé.
-                    </li>
-                </ul>
-                <p><em>La notation "5★" est réservée au domaine de l'exceptionnel. Obtenir "5★" à au moins 3 critères
-                        sur 4 vaut à l'éclair un "Black Label", une distinction rarissime récompensant une maîtrise
-                        exemplaire.</em></p>
-            </div>
-        </details>
-
-        <div class="disclaimer-box">
-            <strong>Note de transparence :</strong>
-            <p>Fulgurance est un projet 100% indépendant et autofinancé, né d'une passion pour la pâtisserie. Les
-                dégustations s'étalant sur plusieurs mois (voire années), il est naturel que certains tarifs, visuels ou
-                recettes aient pu évoluer chez les artisans depuis ma visite. Merci donc de bien vouloir pardonner les
-                éventuels décalages :).</p>
-        </div>
-
-        <div class="suggest-box">
-            <p>Une pépite à me recommander en Bretagne ? <a href="https://tally.so/r/xXZjLr" target="_blank">Suggérer
-                    une pâtisserie</a>.</p>
-        </div>
-    </section>
 
     <footer class="site-footer">
-        <p>© 2026 FULGURANCE - Guide Indépendant.</p>
-
-        <div class="footer-links">
-            <a href="a-propos.html">À propos du Guide</a>
-            <span>contact@fulgurance-guide.fr</span>
+        <div class="footer-primary-links">
+            <a href="a-propos.html" class="footer-link">Découvrir le guide et la notation</a>
+            <span class="footer-separator">✧</span>
+            <a href="https://tally.so/r/xXZjLr" target="_blank" class="footer-link">Une pâtisserie à suggérer ?</a>
         </div>
 
-        <details class="legal-details">
-            <summary>Mentions Légales</summary>
-            <div class="legal-content">
-                <p><strong>Éditeur du site :</strong> Édité à titre non professionnel par Edgar. Conformément à
-                    l'article 6 de la loi n° 2004-575 du 21 juin 2004, l'identité complète de l'éditeur est communiquée
-                    à l'hébergeur.</p>
-                <p><strong>Hébergement :</strong> Ce site est hébergé par GitHub Pages. GitHub Inc., 88 Colin P Kelly Jr
-                    St, San Francisco, CA 94107, États-Unis. Nom de domaine géré par Infomaniak.</p>
-                <p><strong>Propriété intellectuelle :</strong> L'ensemble des textes, critiques, photographies et le
-                    système de notation S.T.A.R sont la propriété exclusive de l'auteur. Toute reproduction totale ou
-                    partielle est strictement interdite sans autorisation préalable.</p>
-                <p><strong>Confidentialité & Cookies :</strong> Ce site web statique ne dépose aucun cookie de traçage
-                    publicitaire et ne collecte aucune donnée personnelle à l'insu de l'utilisateur.</p>
-            </div>
-        </details>
+        <div class="footer-secondary-links">
+            <span class="footer-contact">contact@fulgurance-guide.fr</span>
+            <span class="footer-separator">|</span>
+            <span class="legal-trigger" onclick="document.getElementById('legal-modal').showModal()">Mentions
+                Légales</span>
+        </div>
     </footer>
+
+    <dialog id="legal-modal" class="elegant-modal" onclick="this.close()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="document.getElementById('legal-modal').close()">×</button>
+            <h3>Mentions Légales</h3>
+            <p><strong>© 2026 FULGURANCE - Guide Indépendant.</strong></p>
+            <p><strong>Éditeur du site :</strong> Édité à titre non professionnel par Edgar. Conformément à l'article 6
+                de la loi n° 2004-575 du 21 juin 2004, l'identité complète de l'éditeur est communiquée à l'hébergeur.
+            </p>
+            <p><strong>Hébergement :</strong> Ce site est hébergé par GitHub Pages. GitHub Inc., 88 Colin P Kelly Jr St,
+                San Francisco, CA 94107, États-Unis. Nom de domaine géré par Infomaniak.</p>
+            <p><strong>Propriété intellectuelle :</strong> L'ensemble des textes, critiques, photographies et le système
+                de notation S.T.A.R sont la propriété exclusive de l'auteur. Toute reproduction totale ou partielle est
+                strictement interdite sans autorisation préalable.</p>
+            <p><strong>Confidentialité & Cookies :</strong> Ce site web statique ne dépose aucun cookie de traçage
+                publicitaire et ne collecte aucune donnée personnelle à l'insu de l'utilisateur.</p>
+        </div>
+    </dialog>
 
     <script>
         // Utilitaire de conversion des notes
@@ -939,7 +887,17 @@
                 imageURL: "./img/pinault.jpg",
                 scores: { s: "4", t: "4.5", a: "4", r: "5" },
                 review: "Visuellement très réussi avec sa petite noisette dorée, cet éclair marque surtout des points sur sa texture. Le goût du chocolat est traditionnel, mais l'insert croquant qui survient à mi-dégustation réveille le palais. Une excellente proposition au tarif imbattable de 2,60 €."
+            },
+            {
+                name: "Boulangerie Amande",
+                address: "1 Place Via Silva, 35510 Cesson-Sévigné",
+                flavor: "pécan",
+                date: "31/03/2026",
+                imageURL: "./img/amande2.jpg",
+                scores: { s: "5*", t: "4.5", a: "5*", r: "4" },
+                review: "Un éclair création qui témoigne de toute la passion de l'artisan. Avant toute chose, le visuel est impeccable, ne donnant qu'une seule envie : goûter à cette œuvre. Cette maîtrise se traduit parfaitement en bouche, avec un praliné aux noix de pécan, un caramel et une légère touche de vanille se mariant divinement, le tout relevé par une subtile fleur de sel. On ne change pas une équipe qui gagne puisque le jeu des sensations est lui aussi merveilleux, grâce au côté aérien de la crème, au croquant évident des noix et à la tendresse du chou. Seul petit bémol : sa générosité rend la dégustation un chouïa difficile. Enfin, si un prix de 4,80 € paraît élevé, il reste tout à fait compréhensible pour une telle proposition."
             }
+
         ].map((item, index) => ({ ...item, insertionOrder: index }));
 
         let database = [...initialDatabase];
@@ -1016,6 +974,16 @@
                 } else {
                     card.style.setProperty('--depth', depthCounter.toString());
                     depthCounter++;
+                }
+            });
+
+            const expandedReviews = stack.querySelectorAll('.review-text-container.expanded');
+            expandedReviews.forEach(container => {
+                container.classList.remove('expanded');
+
+                const btn = stack.querySelector(`.read-more-button[data-target="${container.id}"]`);
+                if (btn) {
+                    btn.textContent = 'Lire la suite...';
                 }
             });
         }
@@ -1181,12 +1149,9 @@
             localStorage.setItem('themePreference', isDark ? 'dark' : 'light');
         }
 
-        // --- INITIALIZATION & URL ROUTING ---
-        window.onload = function () {
-            renderPatisseries(database);
-        }
-
         window.addEventListener('load', () => {
+            renderPatisseries(database);
+
             const urlParams = new URLSearchParams(window.location.search);
             const patisserieId = urlParams.get('p');
 
@@ -1194,14 +1159,12 @@
                 const targetStack = document.getElementById(patisserieId);
 
                 if (targetStack) {
-                    // Cacher les autres éléments
                     document.querySelectorAll('.card-stack').forEach(stack => {
                         if (stack !== targetStack) stack.style.display = 'none';
                     });
 
                     document.querySelector('.sort-container').style.display = 'none';
 
-                    // Centrer la carte sélectionnée
                     const appContainer = document.getElementById('app');
                     appContainer.style.display = 'flex';
                     appContainer.style.justifyContent = 'center';
@@ -1210,7 +1173,6 @@
                     targetStack.style.maxWidth = '500px';
                     targetStack.style.width = '100%';
 
-                    // Déplier la review et ajouter le bouton retour
                     const cardsInStack = targetStack.querySelectorAll('.card');
 
                     cardsInStack.forEach(card => {
