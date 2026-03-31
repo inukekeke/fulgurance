@@ -162,67 +162,153 @@
             font-style: italic;
         }
 
-        /* FOOTER COMPLET (Unifié) */
+        /* FOOTER COMPLET */
         .site-footer {
-            text-align: center;
-            padding: 1.5rem 20px;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-top: 1.5rem;
+            padding: 3rem 20px 2rem;
             border-top: 1px solid var(--border-color);
-        }
-
-        .footer-links {
+            margin-top: 2rem;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            margin: 1rem 0;
-            /* Verrouille l'espace exact au-dessus et en-dessous */
         }
 
-        .footer-links a {
+        .footer-primary-links {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-primary-links .footer-link:first-child {
+            text-align: right;
+        }
+
+        .footer-primary-links .footer-link:last-child {
+            text-align: left;
+        }
+
+        .footer-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
             color: var(--accent-choco);
-            font-weight: bold;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            /* Le secret pour un soulignement parfait qui ne casse pas la hauteur */
-            text-decoration-thickness: 1px;
-            margin-right: 20px;
-            transition: opacity 0.2s;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
         }
 
-        .footer-links a:hover {
+        .footer-link:hover {
             opacity: 0.7;
         }
 
-        .footer-links span {
-            color: var(--accent-choco);
-            font-weight: bold;
+        .footer-separator {
+            color: var(--text-light);
+            font-size: 1rem;
+            opacity: 0.5;
+            user-select: none;
+            text-align: center;
         }
 
-        .legal-details {
+        .footer-secondary-links {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-            background: transparent;
         }
 
-        .legal-details summary {
+        .footer-secondary-links> :first-child {
+            text-align: right;
+        }
+
+        .footer-secondary-links> :last-child {
+            text-align: left;
+        }
+
+        .footer-contact {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .legal-trigger {
             color: var(--text-light);
             cursor: pointer;
-            text-align: center;
-            font-size: 0.85rem;
-            list-style: none;
             text-decoration: underline;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
 
-        .legal-content {
-            margin-top: 1rem;
-            padding: 15px;
-            background: var(--sub-grades-bg);
+        .legal-trigger:hover {
+            color: var(--accent-choco);
+        }
+
+        .elegant-modal {
+            background: var(--card-bg);
+            color: var(--text-main);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.8rem;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .elegant-modal::backdrop {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-choco);
+        }
+
+        .elegant-modal h3 {
+            margin-top: 0;
+            color: var(--accent-choco);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .elegant-modal p {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+
+            .footer-primary-links,
+            .footer-secondary-links {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-primary-links .footer-link,
+            .footer-secondary-links> :first-child,
+            .footer-secondary-links> :last-child {
+                text-align: center !important;
+            }
+
+            .footer-separator {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -265,29 +351,34 @@
 
         <ul>
             <li><strong>S pour Saveur (L'équilibre des goûts) :</strong>
-                L'évaluation de la saveur juge l'intensité globale et l'interaction des différents arômes. La note
-                suprême de 5 récompense un équilibre absolu et sans aucun défaut. Un 4.5 sanctionnera l'absence d'un
-                infime détail, tandis qu'un 4 désigne un très bon produit. Un 3.5 représente une saveur dans la moyenne.
-                Toute note de 3 ou moins pointera une expérience gustative décevante.</li>
+                Intensité et pureté du parfum, équilibre du sucre, bref, le goût pur et simple qui donne envie de
+                prendre une deuxième bouchée. Côté notation, la note suprême de 5 récompense un équilibre absolu et sans
+                aucun défaut. Un 4.5 sanctionnera l'absence d'un infime détail, tandis qu'un 4 désigne un très bon
+                produit. Un 3.5 représente une saveur dans la moyenne. Toute note de 3 ou moins pointera une expérience
+                gustative décevante.</li>
 
             <li><strong>T pour Texture (Le jeu des sensations) :</strong>
-                Ce critère note la sensation distincte de chaque élément de l'éclair en bouche. Un 5 traduit une
-                évidence : l'éclair est facile à comprendre, avec une mâche parfaite. Un 4.5 relève un léger défaut ou
-                désagrément à la dégustation, et un 4 confirme que les textures attendues sont bien présentes. La chute
-                s'amorce à 3.5 pour un manque clair de texture. À 3 ou en dessous, pour imager, la sensation s'approche
-                de celle de manger une purée au goût d'éclair.</li>
+                Fraîcheur et moelleux de la pâte à choux, onctuosité de l'appareil, craquant du glaçage. C'est en somme
+                ce qui différencie le fait de boire une soupe de légumes, et de croquer dans une courge. Côté notation,
+                un 5 traduit une évidence : l'éclair est facile à comprendre, avec une mâche parfaite. Un 4.5 relève un
+                léger défaut ou désagrément à la dégustation, et un 4 confirme que les textures attendues sont bien
+                présentes. La chute s'amorce à 3.5 pour un manque clair de texture. À 3 ou en dessous, pour imager, la
+                sensation s'approche de celle de manger une purée au goût d'éclair.</li>
 
             <li><strong>A pour Aspect (Le visuel et la personnalité) :</strong>
-                La première impression compte. Le 5 est réservé aux véritables chefs-d'œuvre visuels qui marquent les
-                esprits. Un 4.5 salue une proposition originale garnie de beaux détails, et un 4 récompense un éclair
-                tout simplement appétissant. Un 3.5 soulignera une décoration peut-être un peu trop simple. Les notes de
-                3 ou moins sont attribuées aux visuels ternes, fades, voire disgracieux.</li>
+                A pour Aspect :</strong> Style, couleur, personnalité, précision des finitions, c'est la première
+                qualité à laquelle on fait face, et souvent ce qui pousse à tester, goûter, pour ultimement noter. Côté
+                notation, le 5 est réservé aux véritables chefs-d'œuvre visuels qui marquent les esprits. Un 4.5 salue
+                une proposition originale garnie de beaux détails, et un 4 récompense un éclair tout simplement
+                appétissant. Un 3.5 soulignera une décoration peut-être un peu trop simple. Les notes de 3 ou moins sont
+                attribuées aux visuels ternes, fades, voire disgracieux.</li>
 
             <li><strong>R pour Rapport (L'expérience face au prix) :</strong>
-                C'est le ratio ultime entre la qualité ressentie et le prix payé. Un 5 donne presque l'impression de
-                voler l'artisan tant la qualité surpasse le tarif. Un 4.5 indique un prix très raisonnable, et un 4 un
-                prix juste et cohérent. À 3.5, l'éclair commence à être perçu comme un poil trop onéreux. Enfin, à 3 ou
-                moins, le prix est jugé injustifié indépendamment de la qualité proposée.</li>
+                L'équilibre entre les trois premiers axes, l'expérience de la dégustation, et le prix finalement payé.
+                Côté notation, un 5 donne presque l'impression de voler l'artisan tant la qualité surpasse le tarif. Un
+                4.5 indique un prix très raisonnable, et un 4 un prix juste et cohérent. À 3.5, l'éclair commence à être
+                perçu comme un poil trop onéreux. Enfin, à 3 ou moins, le prix est jugé injustifié indépendamment de la
+                qualité proposée.</li>
         </ul>
         <p>L'exceptionnalité et le "Black Label" :
             La note maximale de 5 peut parfois être accompagnée d'une étoile (5★) lorsqu'elle va au-delà même de la
@@ -304,29 +395,37 @@
     </main>
 
     <footer class="site-footer">
-        <p>© 2026 FULGURANCE - Guide Indépendant.</p>
-
-        <div class="footer-links">
-            <a href="a-propos.html">À propos du Guide</a>
-            <span>contact@fulgurance-guide.fr</span>
+        <div class="footer-primary-links">
+            <a href="a-propos.html" class="footer-link">Découvrir le guide et la notation</a>
+            <span class="footer-separator">✧</span>
+            <a href="https://tally.so/r/xXZjLr" target="_blank" class="footer-link">Une pâtisserie à suggérer ?</a>
         </div>
 
-        <details class="legal-details">
-            <summary>Mentions Légales</summary>
-            <div class="legal-content">
-                <p><strong>Éditeur du site :</strong> Édité à titre non professionnel par Edgar. Conformément à
-                    l'article 6 de la loi n° 2004-575 du 21 juin 2004, l'identité complète de l'éditeur est communiquée
-                    à l'hébergeur.</p>
-                <p><strong>Hébergement :</strong> Ce site est hébergé par GitHub Pages. GitHub Inc., 88 Colin P Kelly Jr
-                    St, San Francisco, CA 94107, États-Unis. Nom de domaine géré par Infomaniak.</p>
-                <p><strong>Propriété intellectuelle :</strong> L'ensemble des textes, critiques, photographies et le
-                    système de notation S.T.A.R sont la propriété exclusive de l'auteur. Toute reproduction totale ou
-                    partielle est strictement interdite sans autorisation préalable.</p>
-                <p><strong>Confidentialité & Cookies :</strong> Ce site web statique ne dépose aucun cookie de traçage
-                    publicitaire et ne collecte aucune donnée personnelle à l'insu de l'utilisateur.</p>
-            </div>
-        </details>
+        <div class="footer-secondary-links">
+            <span class="footer-contact">contact@fulgurance-guide.fr</span>
+            <span class="footer-separator">|</span>
+            <span class="legal-trigger" onclick="document.getElementById('legal-modal').showModal()">Mentions
+                Légales</span>
+        </div>
     </footer>
+
+    <dialog id="legal-modal" class="elegant-modal" onclick="this.close()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="document.getElementById('legal-modal').close()">×</button>
+            <h3>Mentions Légales</h3>
+            <p><strong>© 2026 FULGURANCE - Guide Indépendant.</strong></p>
+            <p><strong>Éditeur du site :</strong> Édité à titre non professionnel par Edgar. Conformément à l'article 6
+                de la loi n° 2004-575 du 21 juin 2004, l'identité complète de l'éditeur est communiquée à l'hébergeur.
+            </p>
+            <p><strong>Hébergement :</strong> Ce site est hébergé par GitHub Pages. GitHub Inc., 88 Colin P Kelly Jr St,
+                San Francisco, CA 94107, États-Unis. Nom de domaine géré par Infomaniak.</p>
+            <p><strong>Propriété intellectuelle :</strong> L'ensemble des textes, critiques, photographies et le système
+                de notation S.T.A.R sont la propriété exclusive de l'auteur. Toute reproduction totale ou partielle est
+                strictement interdite sans autorisation préalable.</p>
+            <p><strong>Confidentialité & Cookies :</strong> Ce site web statique ne dépose aucun cookie de traçage
+                publicitaire et ne collecte aucune donnée personnelle à l'insu de l'utilisateur.</p>
+        </div>
+    </dialog>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
