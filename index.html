@@ -748,7 +748,7 @@
         const flavorColors = {
             chocolat: "#6b3600",
             vanille: "#ffeab0",
-            cafe: "#946d46"
+            café: "#946d46"
         };
 
         // Base de données
@@ -900,7 +900,7 @@
             {
                 name: "Le fournil des Halles",
                 address: "24 Rue de Nemours, 35000 Rennes",
-                flavor: "cafe",
+                flavor: "café",
                 date: "31/03/2026",
                 imageURL: "./img/hallescafe.jpg",
                 scores: { s: "5", t: "5", a: "4", r: "5" },
@@ -927,11 +927,11 @@
             {
                 name: "Le Fournil de Brocéliande",
                 address: "24 Av. Jean Janvier, 35000 Rennes",
-                flavor: "vanille-speculos",
+                flavor: "vanille-speculoos",
                 date: "31/03/2026",
                 imageURL: "./img/broceliande2.jpg",
                 scores: { s: "4", t: "3", a: "4", r: "4.5" },
-                review: "Une dégustation contrastée. Si un curieux arrière-goût fumé vient s'inviter en toile de fond, les excellentes saveurs de vanille et de spéculoos parviennent heureusement à s'imposer. L'équilibre en bouche est toutefois rompu par un chou trop imposant qui étouffe un peu la garniture. Le visuel fait en revanche mouche et se démarque joliment grâce aux généreux copeaux de spéculoos. À 3,10 €, le tarif reste tout à fait correct pour une telle proposition."
+                review: "Une dégustation contrastée. La très bonne et originale idée d'associer vanille et spéculoos parvient à s'imposer face à un curieux arrière-goût fumé en toile de fond. L'équilibre en bouche est toutefois rompu par un chou trop imposant qui étouffe un peu la garniture. Le visuel fait en revanche mouche et se démarque joliment grâce aux généreux copeaux de spéculoos. À 3,10 €, le tarif reste tout à fait correct pour une telle proposition."
             }
 
         ].map((item, index) => ({ ...item, insertionOrder: index }));
@@ -1065,7 +1065,7 @@
                 if (group.eclairs.length > 1 && group.eclairs[0].flavor) {
                     flavorSelectorHTML = `<div class="flavor-selector">`;
 
-                    const flavorOrder = { 'chocolat': 1, 'vanille': 2, 'cafe': 3 };
+                    const flavorOrder = { 'chocolat': 1, 'vanille': 2, 'café': 3 };
 
                     const eclairsForIcons = [...group.eclairs].sort((a, b) => {
                         return (flavorOrder[a.flavor] || 99) - (flavorOrder[b.flavor] || 99);
