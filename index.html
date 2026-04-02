@@ -945,15 +945,14 @@
             if (['s', 't', 'a', 'r'].includes(criterion)) return getNumericScore(item.scores[criterion]);
 
             if (criterion === 'price') {
-                // Astuce magique : On cherche "X,XX €" dans le texte de la review !
                 const match = item.review.match(/(\d+)[.,](\d+)\s*€/);
                 if (match) return parseFloat(match[1] + '.' + match[2]);
-                return 999; // S'il n'y a pas de prix, on le met très haut pour qu'il aille à la fin
+                return 999;
             }
             return 0;
         }
 
-        // Regroupement et logique de tri intelligente
+        // Regroupement et tri de la base de données
         function groupAndSortDatabase(data, criterion, order) {
             const groupsMap = new Map();
 
@@ -1014,14 +1013,26 @@
             });
 
             const expandedReviews = stack.querySelectorAll('.review-text-container.expanded');
+            const wasAnyExpanded = expandedReviews.length > 0;
+
             expandedReviews.forEach(container => {
                 container.classList.remove('expanded');
-
                 const btn = stack.querySelector(`.read-more-button[data-target="${container.id}"]`);
-                if (btn) {
-                    btn.textContent = 'Lire la suite...';
-                }
+                if (btn) btn.textContent = 'Lire la suite...';
             });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (wasAnyExpanded || urlParams.get('p')) {
+                const activeCard = stack.querySelector(`.card[data-flavor="${selectedFlavor}"]`);
+                if (activeCard) {
+                    const btn = activeCard.querySelector('.read-more-button[data-target]');
+                    const container = activeCard.querySelector('.review-text-container');
+                    if (btn && container) {
+                        container.classList.add('expanded');
+                        btn.textContent = 'Réduire';
+                    }
+                }
+            }
         }
 
         const app = document.getElementById('app');
@@ -1190,7 +1201,6 @@
 
             const urlParams = new URLSearchParams(window.location.search);
             const patisserieId = urlParams.get('p');
-            // Le fameux fix : on cherche le parfum dans l'URL, sinon c'est chocolat par défaut !
             const targetFlavor = urlParams.get('f') || 'chocolat';
 
             if (patisserieId) {
@@ -1228,10 +1238,8 @@
                     const cardsInStack = targetStack.querySelectorAll('.card');
 
                     cardsInStack.forEach(card => {
-                        const btn = card.querySelector('.read-more-button');
-                        if (btn) toggleReview(btn);
-
                         const backBtn = document.createElement('button');
+
                         backBtn.innerHTML = "← Voir tout le guide";
                         backBtn.className = "read-more-button";
                         backBtn.style.marginBottom = "1rem";
