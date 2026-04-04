@@ -932,8 +932,18 @@
                 imageURL: "./img/broceliande2.jpg",
                 scores: { s: "4", t: "3", a: "4", r: "4.5" },
                 review: "Une dégustation contrastée. La très bonne et originale idée d'associer vanille et spéculoos parvient à s'imposer face à un curieux arrière-goût fumé en toile de fond. L'équilibre en bouche est toutefois rompu par un chou trop imposant qui étouffe un peu la garniture. Le visuel fait en revanche mouche et se démarque joliment grâce aux généreux copeaux de spéculoos. À 3,10 €, le tarif reste tout à fait correct pour une telle proposition."
-            }*/
-            
+            },*/
+            {
+                name: "Boulangerie Le Mercier",
+                address: "10 Rue Saint-Martin, 22400 Lamballe",
+                flavor: "chocolat",
+                date: "04/04/2026",
+                imageURL: "./img/lemercier.jpg",
+                scores: { s: "4.5", t: "4.5", a: "3.5", r: "4.5" },
+                review: "Un éclair qui mise tout sur le goût. Son allure déçoit par son manque de détails et l'absence de signature, mais la dégustation met tout le monde d'accord. Son chou est d'un moelleux léger et la texture globale frôle le sans-faute, laissant s'exprimer un cacao franc et bien prononcé. À 3,70 €, c'est un très bon compromis."
+            }
+
+
         ].map((item, index) => ({ ...item, insertionOrder: index }));
 
         let database = [...initialDatabase];
